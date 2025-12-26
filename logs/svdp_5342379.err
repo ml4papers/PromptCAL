@@ -1,0 +1,42 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.10 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250502_000738-cpga5f02
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/cpga5f02
+wandb: - 0.108 MB of 0.108 MB uploadedwandb: \ 0.108 MB of 0.108 MB uploadedwandb: | 0.108 MB of 0.108 MB uploadedwandb: / 0.183 MB of 0.197 MB uploaded (0.007 MB deduped)wandb: - 0.197 MB of 0.197 MB uploaded (0.007 MB deduped)wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/cpga5f02
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v72
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250502_000738-cpga5f02/logs
+Traceback (most recent call last):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/utils/registry.py", line 52, in build_from_cfg
+    return obj_cls(**args)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/datasets/acdc.py", line 33, in __init__
+    super(ACDCDataset, self).__init__(
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/datasets/custom.py", line 111, in __init__
+    self.img_infos = self.load_annotations(self.img_dir, self.img_suffix,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/datasets/custom.py", line 147, in load_annotations
+    for img in mmcv.scandir(img_dir, img_suffix, recursive=True):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/utils/path.py", line 69, in _scandir
+    for entry in os.scandir(dir_path):
+OSError: [Errno 116] Stale file handle: '/gpfs/data/fs72306/leijx0408/rgb_anon/fog/train'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tools/svdp.py", line 337, in <module>
+    main()
+  File "tools/svdp.py", line 257, in main
+    datasets = [build_dataset(cfg.data.test), build_dataset(cfg.data.test1), build_dataset(cfg.data.test2), build_dataset(cfg.data.test3)]
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/datasets/builder.py", line 73, in build_dataset
+    dataset = build_from_cfg(cfg, DATASETS, default_args)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/utils/registry.py", line 55, in build_from_cfg
+    raise type(e)(f'{obj_cls.__name__}: {e}')
+OSError: ACDCDataset: [Errno 116] Stale file handle: '/gpfs/data/fs72306/leijx0408/rgb_anon/fog/train'

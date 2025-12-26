@@ -1,0 +1,3 @@
+/var/spool/slurm/slurmd/job5293149/slurm_script: line 13: python: command not found
+/var/spool/slurm/slurmd/job5293149/slurm_script: line 15: gpustat: command not found
+bash/svdp.sh: line 2: python: command not found

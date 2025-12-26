@@ -1,0 +1,36 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.9 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250421_204424-qz30k22w
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/qz30k22w
+2025-04-21 20:44:28,605 - mmseg - INFO - Loaded 400 images
+2025-04-21 20:44:28,610 - mmseg - INFO - Loaded 400 images
+2025-04-21 20:44:28,616 - mmseg - INFO - Loaded 400 images
+2025-04-21 20:44:28,623 - mmseg - INFO - Loaded 400 images
+wandb: - 0.108 MB of 0.108 MB uploadedwandb: \ 0.108 MB of 0.108 MB uploadedwandb: | 0.108 MB of 0.108 MB uploadedwandb: / 0.184 MB of 0.202 MB uploaded (0.008 MB deduped)wandb: - 0.185 MB of 0.202 MB uploaded (0.008 MB deduped)wandb: \ 0.185 MB of 0.202 MB uploaded (0.008 MB deduped)wandb: | 0.202 MB of 0.202 MB uploaded (0.008 MB deduped)wandb:                                                                                
+wandb: W&B sync reduced upload amount by 3.7%             
+wandb: 
+wandb: Run history:
+wandb:        All_mIoU ▁
+wandb:            mIoU █▁▇▆
+wandb:       mean_mIoU ▁
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb:        All_mIoU 0.61957
+wandb:            mIoU 0.6419
+wandb:       mean_mIoU 0.61957
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/qz30k22w
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v40
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250421_204424-qz30k22w/logs

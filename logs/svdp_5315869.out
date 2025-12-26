@@ -1,0 +1,1462 @@
+===GPU Info===
+Sat Apr 26 21:51:24 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off | 00000000:01:00.0 Off |                    0 |
+| N/A   47C    P0              43W / 250W |      4MiB / 40960MiB |     38%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+1.10.2+cu113
+True
+=== GPU Stat===
+n3073-012                 Sat Apr 26 21:57:46 2025  545.23.08
+[0] NVIDIA A100-PCIE-40GB | 42°C,   0 % |     4 / 40960 MB |
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>init param>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+model_lr 0.0003
+prompt_lr 0.001
+prompt_sparse_rate 0.0001
+ema_rate 0.999
+seed 42
+scale 0.1
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>over param>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Config (path: local_configs/segformer/B5/segformer.b5.1024x1024.acdc.160k_p.py): {'norm_cfg': {'type': 'SyncBN', 'requires_grad': True}, 'find_unused_parameters': True, 'model': {'type': 'EncoderDecoder', 'pretrained': None, 'backbone': {'type': 'mit_b5_prompt', 'style': 'pytorch', 'prompt_psize': 20, 'prompt_np_row': 4, 'prompt_sparse_rate': 0.25}, 'decode_head': {'type': 'SegFormerHead', 'in_channels': [64, 128, 320, 512], 'in_index': [0, 1, 2, 3], 'feature_strides': [4, 8, 16, 32], 'channels': 128, 'dropout_ratio': 0.1, 'num_classes': 19, 'norm_cfg': {'type': 'SyncBN', 'requires_grad': True}, 'align_corners': False, 'decoder_params': {'embed_dim': 768}, 'loss_decode': {'type': 'CrossEntropyLoss', 'use_sigmoid': False, 'loss_weight': 1.0, 'reduction': 'none'}}, 'train_cfg': {}, 'test_cfg': {'mode': 'slide', 'crop_size': (1024, 1024), 'stride': (768, 768)}}, 'dataset_type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_norm_cfg': {'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, 'crop_size': (224, 224), 'train_pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'LoadAnnotations'}, {'type': 'Resize', 'img_scale': (1920, 1080), 'ratio_range': (0.5, 2.0)}, {'type': 'RandomCrop', 'crop_size': (1024, 1024), 'cat_max_ratio': 0.75}, {'type': 'RandomFlip', 'prob': 0.5}, {'type': 'PhotoMetricDistortion'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'Pad', 'size': (1024, 1024), 'pad_val': 0, 'seg_pad_val': 255}, {'type': 'DefaultFormatBundle'}, {'type': 'Collect', 'keys': ['img', 'gt_semantic_seg']}], 'test_pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': False, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}]}], 'data': {'samples_per_gpu': 2, 'workers_per_gpu': 2, 'train': {'type': 'RepeatDataset', 'times': 500, 'dataset': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'leftImg8bit/train', 'ann_dir': 'gtFine/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'LoadAnnotations'}, {'type': 'Resize', 'img_scale': (1920, 1080), 'ratio_range': (0.5, 2.0)}, {'type': 'RandomCrop', 'crop_size': (1024, 1024), 'cat_max_ratio': 0.75}, {'type': 'RandomFlip', 'prob': 0.5}, {'type': 'PhotoMetricDistortion'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'Pad', 'size': (1024, 1024), 'pad_val': 0, 'seg_pad_val': 255}, {'type': 'DefaultFormatBundle'}, {'type': 'Collect', 'keys': ['img', 'gt_semantic_seg']}]}}, 'val': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'rgb_anon/fog/train', 'ann_dir': 'gt/fog/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': False, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}]}]}, 'test': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'rgb_anon/fog/train', 'ann_dir': 'gt/fog/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': True, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}], 'img_ratios': [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]}], 'test_mode': True}, 'test1': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'rgb_anon/night/train', 'ann_dir': 'gt/night/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': True, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}], 'img_ratios': [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]}]}, 'test2': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'rgb_anon/rain/train', 'ann_dir': 'gt/rain/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': True, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}], 'img_ratios': [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]}]}, 'test3': {'type': 'ACDCDataset', 'data_root': '/gpfs/data/fs72306/leijx0408/', 'img_dir': 'rgb_anon/snow/train', 'ann_dir': 'gt/snow/train', 'pipeline': [{'type': 'LoadImageFromFile'}, {'type': 'MultiScaleFlipAug', 'img_scale': (960, 540), 'flip': True, 'transforms': [{'type': 'Resize', 'keep_ratio': True}, {'type': 'RandomFlip'}, {'type': 'Normalize', 'mean': [123.675, 116.28, 103.53], 'std': [58.395, 57.12, 57.375], 'to_rgb': True}, {'type': 'ImageToTensor', 'keys': ['img']}, {'type': 'Collect', 'keys': ['img']}], 'img_ratios': [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]}]}}, 'log_config': {'interval': 50, 'hooks': [{'type': 'TextLoggerHook', 'by_epoch': False}]}, 'dist_params': {'backend': 'nccl'}, 'log_level': 'INFO', 'load_from': None, 'resume_from': None, 'workflow': [('train', 1)], 'cudnn_benchmark': True, 'optimizer': {'type': 'AdamW', 'lr': 0.0001, 'betas': (0.9, 0.999), 'weight_decay': 0.01, 'paramwise_cfg': {'custom_keys': {'pos_block': {'decay_mult': 0.0}, 'norm': {'decay_mult': 0.0}, 'head': {'lr_mult': 10.0}}}}, 'optimizer_config': {}, 'lr_config': {'policy': 'poly', 'warmup': 'linear', 'warmup_iters': 1500, 'warmup_ratio': 1e-06, 'power': 1.0, 'min_lr': 0.0, 'by_epoch': False}, 'runner': {'type': 'IterBasedRunner', 'max_iters': 160000}, 'checkpoint_config': {'by_epoch': False, 'interval': 4000}, 'evaluation': {'interval': 4000, 'metric': 'mIoU'}}
+>>>>>>>>init mit_b5_sparse_prompt 0.0001
+load checkpoint from local path: /gpfs/data/fs72306/leijx0408/segformer.b5.1024x1024.city.160k.pth
+The model and loaded state dict do not match exactly
+
+missing keys in source state_dict: backbone.prompt.patch, backbone.prompt.feature_prompts.0
+
+revisiting 0
+[                                                  ] 0/400, elapsed: 0s, ETA:[Iter 0] Skipping warmup because no prompt parameters found.
+[Iter 1] Skipping warmup because no prompt parameters found.
+[Iter 2] Skipping warmup because no prompt parameters found.
+[Iter 3] Skipping warmup because no prompt parameters found.
+[Iter 4] Skipping warmup because no prompt parameters found.
+[Iter 5] Skipping warmup because no prompt parameters found.
+[Iter 6] Skipping warmup because no prompt parameters found.
+[Iter 7] Skipping warmup because no prompt parameters found.
+[Iter 8] Skipping warmup because no prompt parameters found.
+[Iter 9] Skipping warmup because no prompt parameters found.
+[Iter 10] Skipping warmup because no prompt parameters found.
+[Iter 11] Skipping warmup because no prompt parameters found.
+[Iter 12] Skipping warmup because no prompt parameters found.
+[Iter 13] Skipping warmup because no prompt parameters found.
+[Iter 14] Skipping warmup because no prompt parameters found.
+[Iter 15] Skipping warmup because no prompt parameters found.
+[Iter 16] Skipping warmup because no prompt parameters found.
+[Iter 17] Skipping warmup because no prompt parameters found.
+[Iter 18] Skipping warmup because no prompt parameters found.
+[Iter 19] Skipping warmup because no prompt parameters found.
+[Iter 20] Skipping warmup because no prompt parameters found.
+[Iter 21] Skipping warmup because no prompt parameters found.
+[Iter 22] Skipping warmup because no prompt parameters found.
+[Iter 23] Skipping warmup because no prompt parameters found.
+[Iter 24] Skipping warmup because no prompt parameters found.
+[Iter 25] Skipping warmup because no prompt parameters found.
+[Iter 26] Skipping warmup because no prompt parameters found.
+[Iter 27] Skipping warmup because no prompt parameters found.
+[Iter 28] Skipping warmup because no prompt parameters found.
+[Iter 29] Skipping warmup because no prompt parameters found.
+[Iter 30] Skipping warmup because no prompt parameters found.
+[Iter 31] Skipping warmup because no prompt parameters found.
+[Iter 32] Skipping warmup because no prompt parameters found.
+[Iter 33] Skipping warmup because no prompt parameters found.
+[Iter 34] Skipping warmup because no prompt parameters found.
+[Iter 35] Skipping warmup because no prompt parameters found.
+[Iter 36] Skipping warmup because no prompt parameters found.
+[Iter 37] Skipping warmup because no prompt parameters found.
+[Iter 38] Skipping warmup because no prompt parameters found.
+[Iter 39] Skipping warmup because no prompt parameters found.
+[Iter 40] Skipping warmup because no prompt parameters found.
+[Iter 41] Skipping warmup because no prompt parameters found.
+[Iter 42] Skipping warmup because no prompt parameters found.
+[Iter 43] Skipping warmup because no prompt parameters found.
+[Iter 44] Skipping warmup because no prompt parameters found.
+[Iter 45] Skipping warmup because no prompt parameters found.
+[Iter 46] Skipping warmup because no prompt parameters found.
+[Iter 47] Skipping warmup because no prompt parameters found.
+[Iter 48] Skipping warmup because no prompt parameters found.
+[Iter 49] Skipping warmup because no prompt parameters found.
+[Iter 50] Skipping warmup because no prompt parameters found.
+[Iter 51] Skipping warmup because no prompt parameters found.
+[Iter 52] Skipping warmup because no prompt parameters found.
+[Iter 53] Skipping warmup because no prompt parameters found.
+[Iter 54] Skipping warmup because no prompt parameters found.
+[Iter 55] Skipping warmup because no prompt parameters found.
+[Iter 56] Skipping warmup because no prompt parameters found.
+[Iter 57] Skipping warmup because no prompt parameters found.
+[Iter 58] Skipping warmup because no prompt parameters found.
+[Iter 59] Skipping warmup because no prompt parameters found.
+[Iter 60] Skipping warmup because no prompt parameters found.
+[Iter 61] Skipping warmup because no prompt parameters found.
+[Iter 62] Skipping warmup because no prompt parameters found.
+[Iter 63] Skipping warmup because no prompt parameters found.
+[Iter 64] Skipping warmup because no prompt parameters found.
+[Iter 65] Skipping warmup because no prompt parameters found.
+[Iter 66] Skipping warmup because no prompt parameters found.
+[Iter 67] Skipping warmup because no prompt parameters found.
+[Iter 68] Skipping warmup because no prompt parameters found.
+[Iter 69] Skipping warmup because no prompt parameters found.
+[Iter 70] Skipping warmup because no prompt parameters found.
+[Iter 71] Skipping warmup because no prompt parameters found.
+[Iter 72] Skipping warmup because no prompt parameters found.
+[Iter 73] Skipping warmup because no prompt parameters found.
+[Iter 74] Skipping warmup because no prompt parameters found.
+[Iter 75] Skipping warmup because no prompt parameters found.
+[Iter 76] Skipping warmup because no prompt parameters found.
+[Iter 77] Skipping warmup because no prompt parameters found.
+[Iter 78] Skipping warmup because no prompt parameters found.
+[Iter 79] Skipping warmup because no prompt parameters found.
+[Iter 80] Skipping warmup because no prompt parameters found.
+[Iter 81] Skipping warmup because no prompt parameters found.
+[Iter 82] Skipping warmup because no prompt parameters found.
+[Iter 83] Skipping warmup because no prompt parameters found.
+[Iter 84] Skipping warmup because no prompt parameters found.
+[Iter 85] Skipping warmup because no prompt parameters found.
+[Iter 86] Skipping warmup because no prompt parameters found.
+[Iter 87] Skipping warmup because no prompt parameters found.
+[Iter 88] Skipping warmup because no prompt parameters found.
+[Iter 89] Skipping warmup because no prompt parameters found.
+[Iter 90] Skipping warmup because no prompt parameters found.
+[Iter 91] Skipping warmup because no prompt parameters found.
+[Iter 92] Skipping warmup because no prompt parameters found.
+[Iter 93] Skipping warmup because no prompt parameters found.
+[Iter 94] Skipping warmup because no prompt parameters found.
+[Iter 95] Skipping warmup because no prompt parameters found.
+[Iter 96] Skipping warmup because no prompt parameters found.
+[Iter 97] Skipping warmup because no prompt parameters found.
+[Iter 98] Skipping warmup because no prompt parameters found.
+[Iter 99] Skipping warmup because no prompt parameters found.
+[Iter 100] Skipping warmup because no prompt parameters found.
+[Iter 101] Skipping warmup because no prompt parameters found.
+[Iter 102] Skipping warmup because no prompt parameters found.
+[Iter 103] Skipping warmup because no prompt parameters found.
+[Iter 104] Skipping warmup because no prompt parameters found.
+[Iter 105] Skipping warmup because no prompt parameters found.
+[Iter 106] Skipping warmup because no prompt parameters found.
+[Iter 107] Skipping warmup because no prompt parameters found.
+[Iter 108] Skipping warmup because no prompt parameters found.
+[Iter 109] Skipping warmup because no prompt parameters found.
+[Iter 110] Skipping warmup because no prompt parameters found.
+[Iter 111] Skipping warmup because no prompt parameters found.
+[Iter 112] Skipping warmup because no prompt parameters found.
+[Iter 113] Skipping warmup because no prompt parameters found.
+[Iter 114] Skipping warmup because no prompt parameters found.
+[Iter 115] Skipping warmup because no prompt parameters found.
+[Iter 116] Skipping warmup because no prompt parameters found.
+[Iter 117] Skipping warmup because no prompt parameters found.
+[Iter 118] Skipping warmup because no prompt parameters found.
+[Iter 119] Skipping warmup because no prompt parameters found.
+[Iter 120] Skipping warmup because no prompt parameters found.
+[Iter 121] Skipping warmup because no prompt parameters found.
+[Iter 122] Skipping warmup because no prompt parameters found.
+[Iter 123] Skipping warmup because no prompt parameters found.
+[Iter 124] Skipping warmup because no prompt parameters found.
+[Iter 125] Skipping warmup because no prompt parameters found.
+[Iter 126] Skipping warmup because no prompt parameters found.
+[Iter 127] Skipping warmup because no prompt parameters found.
+[Iter 128] Skipping warmup because no prompt parameters found.
+[Iter 129] Skipping warmup because no prompt parameters found.
+[Iter 130] Skipping warmup because no prompt parameters found.
+[Iter 131] Skipping warmup because no prompt parameters found.
+[Iter 132] Skipping warmup because no prompt parameters found.
+[Iter 133] Skipping warmup because no prompt parameters found.
+[Iter 134] Skipping warmup because no prompt parameters found.
+[Iter 135] Skipping warmup because no prompt parameters found.
+[Iter 136] Skipping warmup because no prompt parameters found.
+[Iter 137] Skipping warmup because no prompt parameters found.
+[Iter 138] Skipping warmup because no prompt parameters found.
+[Iter 139] Skipping warmup because no prompt parameters found.
+[Iter 140] Skipping warmup because no prompt parameters found.
+[Iter 141] Skipping warmup because no prompt parameters found.
+[Iter 142] Skipping warmup because no prompt parameters found.
+[Iter 143] Skipping warmup because no prompt parameters found.
+[Iter 144] Skipping warmup because no prompt parameters found.
+[Iter 145] Skipping warmup because no prompt parameters found.
+[Iter 146] Skipping warmup because no prompt parameters found.
+[Iter 147] Skipping warmup because no prompt parameters found.
+[Iter 148] Skipping warmup because no prompt parameters found.
+[Iter 149] Skipping warmup because no prompt parameters found.
+[Iter 150] Skipping warmup because no prompt parameters found.
+[Iter 151] Skipping warmup because no prompt parameters found.
+[Iter 152] Skipping warmup because no prompt parameters found.
+[Iter 153] Skipping warmup because no prompt parameters found.
+[Iter 154] Skipping warmup because no prompt parameters found.
+[Iter 155] Skipping warmup because no prompt parameters found.
+[Iter 156] Skipping warmup because no prompt parameters found.
+[Iter 157] Skipping warmup because no prompt parameters found.
+[Iter 158] Skipping warmup because no prompt parameters found.
+[Iter 159] Skipping warmup because no prompt parameters found.
+[Iter 160] Skipping warmup because no prompt parameters found.
+[Iter 161] Skipping warmup because no prompt parameters found.
+[Iter 162] Skipping warmup because no prompt parameters found.
+[Iter 163] Skipping warmup because no prompt parameters found.
+[Iter 164] Skipping warmup because no prompt parameters found.
+[Iter 165] Skipping warmup because no prompt parameters found.
+[Iter 166] Skipping warmup because no prompt parameters found.
+[Iter 167] Skipping warmup because no prompt parameters found.
+[Iter 168] Skipping warmup because no prompt parameters found.
+[Iter 169] Skipping warmup because no prompt parameters found.
+[Iter 170] Skipping warmup because no prompt parameters found.
+[Iter 171] Skipping warmup because no prompt parameters found.
+[Iter 172] Skipping warmup because no prompt parameters found.
+[Iter 173] Skipping warmup because no prompt parameters found.
+[Iter 174] Skipping warmup because no prompt parameters found.
+[Iter 175] Skipping warmup because no prompt parameters found.
+[Iter 176] Skipping warmup because no prompt parameters found.
+[Iter 177] Skipping warmup because no prompt parameters found.
+[Iter 178] Skipping warmup because no prompt parameters found.
+[Iter 179] Skipping warmup because no prompt parameters found.
+[Iter 180] Skipping warmup because no prompt parameters found.
+[Iter 181] Skipping warmup because no prompt parameters found.
+[Iter 182] Skipping warmup because no prompt parameters found.
+[Iter 183] Skipping warmup because no prompt parameters found.
+[Iter 184] Skipping warmup because no prompt parameters found.
+[Iter 185] Skipping warmup because no prompt parameters found.
+[Iter 186] Skipping warmup because no prompt parameters found.
+[Iter 187] Skipping warmup because no prompt parameters found.
+[Iter 188] Skipping warmup because no prompt parameters found.
+[Iter 189] Skipping warmup because no prompt parameters found.
+[Iter 190] Skipping warmup because no prompt parameters found.
+[Iter 191] Skipping warmup because no prompt parameters found.
+[Iter 192] Skipping warmup because no prompt parameters found.
+[Iter 193] Skipping warmup because no prompt parameters found.
+[Iter 194] Skipping warmup because no prompt parameters found.
+[Iter 195] Skipping warmup because no prompt parameters found.
+[Iter 196] Skipping warmup because no prompt parameters found.
+[Iter 197] Skipping warmup because no prompt parameters found.
+[Iter 198] Skipping warmup because no prompt parameters found.
+[Iter 199] Skipping warmup because no prompt parameters found.
+[Iter 200] Skipping warmup because no prompt parameters found.
+[Iter 201] Skipping warmup because no prompt parameters found.
+[Iter 202] Skipping warmup because no prompt parameters found.
+[Iter 203] Skipping warmup because no prompt parameters found.
+[Iter 204] Skipping warmup because no prompt parameters found.
+[Iter 205] Skipping warmup because no prompt parameters found.
+[Iter 206] Skipping warmup because no prompt parameters found.
+[Iter 207] Skipping warmup because no prompt parameters found.
+[Iter 208] Skipping warmup because no prompt parameters found.
+[Iter 209] Skipping warmup because no prompt parameters found.
+[Iter 210] Skipping warmup because no prompt parameters found.
+[Iter 211] Skipping warmup because no prompt parameters found.
+[Iter 212] Skipping warmup because no prompt parameters found.
+[Iter 213] Skipping warmup because no prompt parameters found.
+[Iter 214] Skipping warmup because no prompt parameters found.
+[Iter 215] Skipping warmup because no prompt parameters found.
+[Iter 216] Skipping warmup because no prompt parameters found.
+[Iter 217] Skipping warmup because no prompt parameters found.
+[Iter 218] Skipping warmup because no prompt parameters found.
+[Iter 219] Skipping warmup because no prompt parameters found.
+[Iter 220] Skipping warmup because no prompt parameters found.
+[Iter 221] Skipping warmup because no prompt parameters found.
+[Iter 222] Skipping warmup because no prompt parameters found.
+[Iter 223] Skipping warmup because no prompt parameters found.
+[Iter 224] Skipping warmup because no prompt parameters found.
+[Iter 225] Skipping warmup because no prompt parameters found.
+[Iter 226] Skipping warmup because no prompt parameters found.
+[Iter 227] Skipping warmup because no prompt parameters found.
+[Iter 228] Skipping warmup because no prompt parameters found.
+[Iter 229] Skipping warmup because no prompt parameters found.
+[Iter 230] Skipping warmup because no prompt parameters found.
+[Iter 231] Skipping warmup because no prompt parameters found.
+[Iter 232] Skipping warmup because no prompt parameters found.
+[Iter 233] Skipping warmup because no prompt parameters found.
+[Iter 234] Skipping warmup because no prompt parameters found.
+[Iter 235] Skipping warmup because no prompt parameters found.
+[Iter 236] Skipping warmup because no prompt parameters found.
+[Iter 237] Skipping warmup because no prompt parameters found.
+[Iter 238] Skipping warmup because no prompt parameters found.
+[Iter 239] Skipping warmup because no prompt parameters found.
+[Iter 240] Skipping warmup because no prompt parameters found.
+[Iter 241] Skipping warmup because no prompt parameters found.
+[Iter 242] Skipping warmup because no prompt parameters found.
+[Iter 243] Skipping warmup because no prompt parameters found.
+[Iter 244] Skipping warmup because no prompt parameters found.
+[Iter 245] Skipping warmup because no prompt parameters found.
+[Iter 246] Skipping warmup because no prompt parameters found.
+[Iter 247] Skipping warmup because no prompt parameters found.
+[Iter 248] Skipping warmup because no prompt parameters found.
+[Iter 249] Skipping warmup because no prompt parameters found.
+[Iter 250] Skipping warmup because no prompt parameters found.
+[Iter 251] Skipping warmup because no prompt parameters found.
+[Iter 252] Skipping warmup because no prompt parameters found.
+[Iter 253] Skipping warmup because no prompt parameters found.
+[Iter 254] Skipping warmup because no prompt parameters found.
+[Iter 255] Skipping warmup because no prompt parameters found.
+[Iter 256] Skipping warmup because no prompt parameters found.
+[Iter 257] Skipping warmup because no prompt parameters found.
+[Iter 258] Skipping warmup because no prompt parameters found.
+[Iter 259] Skipping warmup because no prompt parameters found.
+[Iter 260] Skipping warmup because no prompt parameters found.
+[Iter 261] Skipping warmup because no prompt parameters found.
+[Iter 262] Skipping warmup because no prompt parameters found.
+[Iter 263] Skipping warmup because no prompt parameters found.
+[Iter 264] Skipping warmup because no prompt parameters found.
+[Iter 265] Skipping warmup because no prompt parameters found.
+[Iter 266] Skipping warmup because no prompt parameters found.
+[Iter 267] Skipping warmup because no prompt parameters found.
+[Iter 268] Skipping warmup because no prompt parameters found.
+[Iter 269] Skipping warmup because no prompt parameters found.
+[Iter 270] Skipping warmup because no prompt parameters found.
+[Iter 271] Skipping warmup because no prompt parameters found.
+[Iter 272] Skipping warmup because no prompt parameters found.
+[Iter 273] Skipping warmup because no prompt parameters found.
+[Iter 274] Skipping warmup because no prompt parameters found.
+[Iter 275] Skipping warmup because no prompt parameters found.
+[Iter 276] Skipping warmup because no prompt parameters found.
+[Iter 277] Skipping warmup because no prompt parameters found.
+[Iter 278] Skipping warmup because no prompt parameters found.
+[Iter 279] Skipping warmup because no prompt parameters found.
+[Iter 280] Skipping warmup because no prompt parameters found.
+[Iter 281] Skipping warmup because no prompt parameters found.
+[Iter 282] Skipping warmup because no prompt parameters found.
+[Iter 283] Skipping warmup because no prompt parameters found.
+[Iter 284] Skipping warmup because no prompt parameters found.
+[Iter 285] Skipping warmup because no prompt parameters found.
+[Iter 286] Skipping warmup because no prompt parameters found.
+[Iter 287] Skipping warmup because no prompt parameters found.
+[Iter 288] Skipping warmup because no prompt parameters found.
+[Iter 289] Skipping warmup because no prompt parameters found.
+[Iter 290] Skipping warmup because no prompt parameters found.
+[Iter 291] Skipping warmup because no prompt parameters found.
+[Iter 292] Skipping warmup because no prompt parameters found.
+[Iter 293] Skipping warmup because no prompt parameters found.
+[Iter 294] Skipping warmup because no prompt parameters found.
+[Iter 295] Skipping warmup because no prompt parameters found.
+[Iter 296] Skipping warmup because no prompt parameters found.
+[Iter 297] Skipping warmup because no prompt parameters found.
+[Iter 298] Skipping warmup because no prompt parameters found.
+[Iter 299] Skipping warmup because no prompt parameters found.
+[Iter 300] Skipping warmup because no prompt parameters found.
+[Iter 301] Skipping warmup because no prompt parameters found.
+[Iter 302] Skipping warmup because no prompt parameters found.
+[Iter 303] Skipping warmup because no prompt parameters found.
+[Iter 304] Skipping warmup because no prompt parameters found.
+[Iter 305] Skipping warmup because no prompt parameters found.
+[Iter 306] Skipping warmup because no prompt parameters found.
+[Iter 307] Skipping warmup because no prompt parameters found.
+[Iter 308] Skipping warmup because no prompt parameters found.
+[Iter 309] Skipping warmup because no prompt parameters found.
+[Iter 310] Skipping warmup because no prompt parameters found.
+[Iter 311] Skipping warmup because no prompt parameters found.
+[Iter 312] Skipping warmup because no prompt parameters found.
+[Iter 313] Skipping warmup because no prompt parameters found.
+[Iter 314] Skipping warmup because no prompt parameters found.
+[Iter 315] Skipping warmup because no prompt parameters found.
+[Iter 316] Skipping warmup because no prompt parameters found.
+[Iter 317] Skipping warmup because no prompt parameters found.
+[Iter 318] Skipping warmup because no prompt parameters found.
+[Iter 319] Skipping warmup because no prompt parameters found.
+[                              ] 1/400, 0.0 task/s, elapsed: 335s, ETA: 133686s[                               ] 2/400, 0.0 task/s, elapsed: 339s, ETA: 67402s[                               ] 3/400, 0.0 task/s, elapsed: 342s, ETA: 45275s[                               ] 4/400, 0.0 task/s, elapsed: 346s, ETA: 34207s[                               ] 5/400, 0.0 task/s, elapsed: 349s, ETA: 27569s[                               ] 6/400, 0.0 task/s, elapsed: 352s, ETA: 23141s[                               ] 7/400, 0.0 task/s, elapsed: 356s, ETA: 19975s[                               ] 8/400, 0.0 task/s, elapsed: 359s, ETA: 17603s[                               ] 9/400, 0.0 task/s, elapsed: 363s, ETA: 15756s[                              ] 10/400, 0.0 task/s, elapsed: 366s, ETA: 14276s[                              ] 11/400, 0.0 task/s, elapsed: 370s, ETA: 13067s[                              ] 12/400, 0.0 task/s, elapsed: 373s, ETA: 12059s[                              ] 13/400, 0.0 task/s, elapsed: 376s, ETA: 11204s[>                             ] 14/400, 0.0 task/s, elapsed: 380s, ETA: 10473s[>                             ] 15/400, 0.0 task/s, elapsed: 383s, ETA:  9838s[>                             ] 16/400, 0.0 task/s, elapsed: 387s, ETA:  9281s[>                             ] 17/400, 0.0 task/s, elapsed: 390s, ETA:  8790s[>                             ] 18/400, 0.0 task/s, elapsed: 394s, ETA:  8353s[>                             ] 19/400, 0.0 task/s, elapsed: 397s, ETA:  7962s[>                             ] 20/400, 0.0 task/s, elapsed: 400s, ETA:  7609s[>                             ] 21/400, 0.1 task/s, elapsed: 404s, ETA:  7291s[>                             ] 22/400, 0.1 task/s, elapsed: 407s, ETA:  7000s[>                             ] 23/400, 0.1 task/s, elapsed: 411s, ETA:  6736s[>                             ] 24/400, 0.1 task/s, elapsed: 414s, ETA:  6493s[>                             ] 25/400, 0.1 task/s, elapsed: 418s, ETA:  6268s[>                             ] 26/400, 0.1 task/s, elapsed: 421s, ETA:  6061s[>>                            ] 27/400, 0.1 task/s, elapsed: 425s, ETA:  5869s[>>                            ] 28/400, 0.1 task/s, elapsed: 428s, ETA:  5690s[>>                            ] 29/400, 0.1 task/s, elapsed: 432s, ETA:  5523s[>>                            ] 30/400, 0.1 task/s, elapsed: 435s, ETA:  5368s[>>                            ] 31/400, 0.1 task/s, elapsed: 439s, ETA:  5222s[>>                            ] 32/400, 0.1 task/s, elapsed: 442s, ETA:  5085s[>>                            ] 33/400, 0.1 task/s, elapsed: 446s, ETA:  4956s[>>                            ] 34/400, 0.1 task/s, elapsed: 449s, ETA:  4834s[>>                            ] 35/400, 0.1 task/s, elapsed: 453s, ETA:  4719s[>>                            ] 36/400, 0.1 task/s, elapsed: 456s, ETA:  4611s[>>                            ] 37/400, 0.1 task/s, elapsed: 459s, ETA:  4508s[>>                            ] 38/400, 0.1 task/s, elapsed: 463s, ETA:  4410s[>>                            ] 39/400, 0.1 task/s, elapsed: 466s, ETA:  4317s[>>>                           ] 40/400, 0.1 task/s, elapsed: 470s, ETA:  4229s[>>>                           ] 41/400, 0.1 task/s, elapsed: 473s, ETA:  4145s[>>>                           ] 42/400, 0.1 task/s, elapsed: 477s, ETA:  4064s[>>>                           ] 43/400, 0.1 task/s, elapsed: 480s, ETA:  3987s[>>>                           ] 44/400, 0.1 task/s, elapsed: 484s, ETA:  3914s[>>>                           ] 45/400, 0.1 task/s, elapsed: 487s, ETA:  3844s[>>>                           ] 46/400, 0.1 task/s, elapsed: 491s, ETA:  3776s[>>>                           ] 47/400, 0.1 task/s, elapsed: 494s, ETA:  3712s[>>>                           ] 48/400, 0.1 task/s, elapsed: 498s, ETA:  3650s[>>>                           ] 49/400, 0.1 task/s, elapsed: 501s, ETA:  3590s[>>>                           ] 50/400, 0.1 task/s, elapsed: 505s, ETA:  3532s[>>>                           ] 51/400, 0.1 task/s, elapsed: 508s, ETA:  3477s[>>>                           ] 52/400, 0.1 task/s, elapsed: 512s, ETA:  3423s[>>>                           ] 53/400, 0.1 task/s, elapsed: 515s, ETA:  3372s[>>>>                          ] 54/400, 0.1 task/s, elapsed: 518s, ETA:  3322s[>>>>                          ] 55/400, 0.1 task/s, elapsed: 522s, ETA:  3274s[>>>>                          ] 56/400, 0.1 task/s, elapsed: 525s, ETA:  3228s[>>>>                          ] 57/400, 0.1 task/s, elapsed: 529s, ETA:  3183s[>>>>                          ] 58/400, 0.1 task/s, elapsed: 532s, ETA:  3139s[>>>>                          ] 59/400, 0.1 task/s, elapsed: 536s, ETA:  3097s[>>>>                          ] 60/400, 0.1 task/s, elapsed: 539s, ETA:  3056s[>>>>                          ] 61/400, 0.1 task/s, elapsed: 543s, ETA:  3016s[>>>>                          ] 62/400, 0.1 task/s, elapsed: 546s, ETA:  2978s[>>>>                          ] 63/400, 0.1 task/s, elapsed: 550s, ETA:  2940s[>>>>                          ] 64/400, 0.1 task/s, elapsed: 553s, ETA:  2904s[>>>>                          ] 65/400, 0.1 task/s, elapsed: 557s, ETA:  2869s[>>>>                          ] 66/400, 0.1 task/s, elapsed: 560s, ETA:  2834s[>>>>>                         ] 67/400, 0.1 task/s, elapsed: 564s, ETA:  2801s[>>>>>                         ] 68/400, 0.1 task/s, elapsed: 567s, ETA:  2768s[>>>>>                         ] 69/400, 0.1 task/s, elapsed: 570s, ETA:  2737s[>>>>>                         ] 70/400, 0.1 task/s, elapsed: 574s, ETA:  2706s[>>>>>                         ] 71/400, 0.1 task/s, elapsed: 577s, ETA:  2676s[>>>>>                         ] 72/400, 0.1 task/s, elapsed: 581s, ETA:  2646s[>>>>>                         ] 73/400, 0.1 task/s, elapsed: 584s, ETA:  2617s[>>>>>                         ] 74/400, 0.1 task/s, elapsed: 588s, ETA:  2589s[>>>>>                         ] 75/400, 0.1 task/s, elapsed: 591s, ETA:  2562s[>>>>>                         ] 76/400, 0.1 task/s, elapsed: 595s, ETA:  2535s[>>>>>                         ] 77/400, 0.1 task/s, elapsed: 598s, ETA:  2509s[>>>>>                         ] 78/400, 0.1 task/s, elapsed: 602s, ETA:  2483s[>>>>>                         ] 79/400, 0.1 task/s, elapsed: 605s, ETA:  2458s[>>>>>>                        ] 80/400, 0.1 task/s, elapsed: 608s, ETA:  2434s
+writing results to work_dirs/res.pkl
+per class results:
+
++---------------+-------+-------+
+| Class         | IoU   | Acc   |
++---------------+-------+-------+
+| road          | 72.37 | 85.82 |
+| sidewalk      | 12.55 | 16.91 |
+| building      | 5.55  | 11.5  |
+| wall          | 4.63  | 11.74 |
+| fence         | 4.91  | 7.89  |
+| pole          | 0.26  | 0.49  |
+| traffic light | 0.04  | 0.06  |
+| traffic sign  | 0.02  | 0.06  |
+| vegetation    | 19.78 | 28.29 |
+| terrain       | 10.2  | 22.01 |
+| sky           | 68.9  | 85.14 |
+| person        | 0.0   | 0.0   |
+| rider         | 0.0   | 0.0   |
+| car           | 4.27  | 8.4   |
+| truck         | 1.08  | 1.65  |
+| bus           | 0.0   | nan   |
+| train         | 0.0   | nan   |
+| motorcycle    | 0.0   | nan   |
+| bicycle       | 0.0   | 0.0   |
++---------------+-------+-------+
+Summary:
+
++--------+-------+------+-------+
+| Scope  | mIoU  | mAcc | aAcc  |
++--------+-------+------+-------+
+| global | 10.77 | 17.5 | 63.61 |
++--------+-------+------+-------+
+Logged mIoU: 0.10769999999999999
+[                                                  ] 0/400, elapsed: 0s, ETA:[Iter 0] Skipping warmup because no prompt parameters found.
+[Iter 1] Skipping warmup because no prompt parameters found.
+[Iter 2] Skipping warmup because no prompt parameters found.
+[Iter 3] Skipping warmup because no prompt parameters found.
+[Iter 4] Skipping warmup because no prompt parameters found.
+[Iter 5] Skipping warmup because no prompt parameters found.
+[Iter 6] Skipping warmup because no prompt parameters found.
+[Iter 7] Skipping warmup because no prompt parameters found.
+[Iter 8] Skipping warmup because no prompt parameters found.
+[Iter 9] Skipping warmup because no prompt parameters found.
+[Iter 10] Skipping warmup because no prompt parameters found.
+[Iter 11] Skipping warmup because no prompt parameters found.
+[Iter 12] Skipping warmup because no prompt parameters found.
+[Iter 13] Skipping warmup because no prompt parameters found.
+[Iter 14] Skipping warmup because no prompt parameters found.
+[Iter 15] Skipping warmup because no prompt parameters found.
+[Iter 16] Skipping warmup because no prompt parameters found.
+[Iter 17] Skipping warmup because no prompt parameters found.
+[Iter 18] Skipping warmup because no prompt parameters found.
+[Iter 19] Skipping warmup because no prompt parameters found.
+[Iter 20] Skipping warmup because no prompt parameters found.
+[Iter 21] Skipping warmup because no prompt parameters found.
+[Iter 22] Skipping warmup because no prompt parameters found.
+[Iter 23] Skipping warmup because no prompt parameters found.
+[Iter 24] Skipping warmup because no prompt parameters found.
+[Iter 25] Skipping warmup because no prompt parameters found.
+[Iter 26] Skipping warmup because no prompt parameters found.
+[Iter 27] Skipping warmup because no prompt parameters found.
+[Iter 28] Skipping warmup because no prompt parameters found.
+[Iter 29] Skipping warmup because no prompt parameters found.
+[Iter 30] Skipping warmup because no prompt parameters found.
+[Iter 31] Skipping warmup because no prompt parameters found.
+[Iter 32] Skipping warmup because no prompt parameters found.
+[Iter 33] Skipping warmup because no prompt parameters found.
+[Iter 34] Skipping warmup because no prompt parameters found.
+[Iter 35] Skipping warmup because no prompt parameters found.
+[Iter 36] Skipping warmup because no prompt parameters found.
+[Iter 37] Skipping warmup because no prompt parameters found.
+[Iter 38] Skipping warmup because no prompt parameters found.
+[Iter 39] Skipping warmup because no prompt parameters found.
+[Iter 40] Skipping warmup because no prompt parameters found.
+[Iter 41] Skipping warmup because no prompt parameters found.
+[Iter 42] Skipping warmup because no prompt parameters found.
+[Iter 43] Skipping warmup because no prompt parameters found.
+[Iter 44] Skipping warmup because no prompt parameters found.
+[Iter 45] Skipping warmup because no prompt parameters found.
+[Iter 46] Skipping warmup because no prompt parameters found.
+[Iter 47] Skipping warmup because no prompt parameters found.
+[Iter 48] Skipping warmup because no prompt parameters found.
+[Iter 49] Skipping warmup because no prompt parameters found.
+[Iter 50] Skipping warmup because no prompt parameters found.
+[Iter 51] Skipping warmup because no prompt parameters found.
+[Iter 52] Skipping warmup because no prompt parameters found.
+[Iter 53] Skipping warmup because no prompt parameters found.
+[Iter 54] Skipping warmup because no prompt parameters found.
+[Iter 55] Skipping warmup because no prompt parameters found.
+[Iter 56] Skipping warmup because no prompt parameters found.
+[Iter 57] Skipping warmup because no prompt parameters found.
+[Iter 58] Skipping warmup because no prompt parameters found.
+[Iter 59] Skipping warmup because no prompt parameters found.
+[Iter 60] Skipping warmup because no prompt parameters found.
+[Iter 61] Skipping warmup because no prompt parameters found.
+[Iter 62] Skipping warmup because no prompt parameters found.
+[Iter 63] Skipping warmup because no prompt parameters found.
+[Iter 64] Skipping warmup because no prompt parameters found.
+[Iter 65] Skipping warmup because no prompt parameters found.
+[Iter 66] Skipping warmup because no prompt parameters found.
+[Iter 67] Skipping warmup because no prompt parameters found.
+[Iter 68] Skipping warmup because no prompt parameters found.
+[Iter 69] Skipping warmup because no prompt parameters found.
+[Iter 70] Skipping warmup because no prompt parameters found.
+[Iter 71] Skipping warmup because no prompt parameters found.
+[Iter 72] Skipping warmup because no prompt parameters found.
+[Iter 73] Skipping warmup because no prompt parameters found.
+[Iter 74] Skipping warmup because no prompt parameters found.
+[Iter 75] Skipping warmup because no prompt parameters found.
+[Iter 76] Skipping warmup because no prompt parameters found.
+[Iter 77] Skipping warmup because no prompt parameters found.
+[Iter 78] Skipping warmup because no prompt parameters found.
+[Iter 79] Skipping warmup because no prompt parameters found.
+[Iter 80] Skipping warmup because no prompt parameters found.
+[Iter 81] Skipping warmup because no prompt parameters found.
+[Iter 82] Skipping warmup because no prompt parameters found.
+[Iter 83] Skipping warmup because no prompt parameters found.
+[Iter 84] Skipping warmup because no prompt parameters found.
+[Iter 85] Skipping warmup because no prompt parameters found.
+[Iter 86] Skipping warmup because no prompt parameters found.
+[Iter 87] Skipping warmup because no prompt parameters found.
+[Iter 88] Skipping warmup because no prompt parameters found.
+[Iter 89] Skipping warmup because no prompt parameters found.
+[Iter 90] Skipping warmup because no prompt parameters found.
+[Iter 91] Skipping warmup because no prompt parameters found.
+[Iter 92] Skipping warmup because no prompt parameters found.
+[Iter 93] Skipping warmup because no prompt parameters found.
+[Iter 94] Skipping warmup because no prompt parameters found.
+[Iter 95] Skipping warmup because no prompt parameters found.
+[Iter 96] Skipping warmup because no prompt parameters found.
+[Iter 97] Skipping warmup because no prompt parameters found.
+[Iter 98] Skipping warmup because no prompt parameters found.
+[Iter 99] Skipping warmup because no prompt parameters found.
+[Iter 100] Skipping warmup because no prompt parameters found.
+[Iter 101] Skipping warmup because no prompt parameters found.
+[Iter 102] Skipping warmup because no prompt parameters found.
+[Iter 103] Skipping warmup because no prompt parameters found.
+[Iter 104] Skipping warmup because no prompt parameters found.
+[Iter 105] Skipping warmup because no prompt parameters found.
+[Iter 106] Skipping warmup because no prompt parameters found.
+[Iter 107] Skipping warmup because no prompt parameters found.
+[Iter 108] Skipping warmup because no prompt parameters found.
+[Iter 109] Skipping warmup because no prompt parameters found.
+[Iter 110] Skipping warmup because no prompt parameters found.
+[Iter 111] Skipping warmup because no prompt parameters found.
+[Iter 112] Skipping warmup because no prompt parameters found.
+[Iter 113] Skipping warmup because no prompt parameters found.
+[Iter 114] Skipping warmup because no prompt parameters found.
+[Iter 115] Skipping warmup because no prompt parameters found.
+[Iter 116] Skipping warmup because no prompt parameters found.
+[Iter 117] Skipping warmup because no prompt parameters found.
+[Iter 118] Skipping warmup because no prompt parameters found.
+[Iter 119] Skipping warmup because no prompt parameters found.
+[Iter 120] Skipping warmup because no prompt parameters found.
+[Iter 121] Skipping warmup because no prompt parameters found.
+[Iter 122] Skipping warmup because no prompt parameters found.
+[Iter 123] Skipping warmup because no prompt parameters found.
+[Iter 124] Skipping warmup because no prompt parameters found.
+[Iter 125] Skipping warmup because no prompt parameters found.
+[Iter 126] Skipping warmup because no prompt parameters found.
+[Iter 127] Skipping warmup because no prompt parameters found.
+[Iter 128] Skipping warmup because no prompt parameters found.
+[Iter 129] Skipping warmup because no prompt parameters found.
+[Iter 130] Skipping warmup because no prompt parameters found.
+[Iter 131] Skipping warmup because no prompt parameters found.
+[Iter 132] Skipping warmup because no prompt parameters found.
+[Iter 133] Skipping warmup because no prompt parameters found.
+[Iter 134] Skipping warmup because no prompt parameters found.
+[Iter 135] Skipping warmup because no prompt parameters found.
+[Iter 136] Skipping warmup because no prompt parameters found.
+[Iter 137] Skipping warmup because no prompt parameters found.
+[Iter 138] Skipping warmup because no prompt parameters found.
+[Iter 139] Skipping warmup because no prompt parameters found.
+[Iter 140] Skipping warmup because no prompt parameters found.
+[Iter 141] Skipping warmup because no prompt parameters found.
+[Iter 142] Skipping warmup because no prompt parameters found.
+[Iter 143] Skipping warmup because no prompt parameters found.
+[Iter 144] Skipping warmup because no prompt parameters found.
+[Iter 145] Skipping warmup because no prompt parameters found.
+[Iter 146] Skipping warmup because no prompt parameters found.
+[Iter 147] Skipping warmup because no prompt parameters found.
+[Iter 148] Skipping warmup because no prompt parameters found.
+[Iter 149] Skipping warmup because no prompt parameters found.
+[Iter 150] Skipping warmup because no prompt parameters found.
+[Iter 151] Skipping warmup because no prompt parameters found.
+[Iter 152] Skipping warmup because no prompt parameters found.
+[Iter 153] Skipping warmup because no prompt parameters found.
+[Iter 154] Skipping warmup because no prompt parameters found.
+[Iter 155] Skipping warmup because no prompt parameters found.
+[Iter 156] Skipping warmup because no prompt parameters found.
+[Iter 157] Skipping warmup because no prompt parameters found.
+[Iter 158] Skipping warmup because no prompt parameters found.
+[Iter 159] Skipping warmup because no prompt parameters found.
+[Iter 160] Skipping warmup because no prompt parameters found.
+[Iter 161] Skipping warmup because no prompt parameters found.
+[Iter 162] Skipping warmup because no prompt parameters found.
+[Iter 163] Skipping warmup because no prompt parameters found.
+[Iter 164] Skipping warmup because no prompt parameters found.
+[Iter 165] Skipping warmup because no prompt parameters found.
+[Iter 166] Skipping warmup because no prompt parameters found.
+[Iter 167] Skipping warmup because no prompt parameters found.
+[Iter 168] Skipping warmup because no prompt parameters found.
+[Iter 169] Skipping warmup because no prompt parameters found.
+[Iter 170] Skipping warmup because no prompt parameters found.
+[Iter 171] Skipping warmup because no prompt parameters found.
+[Iter 172] Skipping warmup because no prompt parameters found.
+[Iter 173] Skipping warmup because no prompt parameters found.
+[Iter 174] Skipping warmup because no prompt parameters found.
+[Iter 175] Skipping warmup because no prompt parameters found.
+[Iter 176] Skipping warmup because no prompt parameters found.
+[Iter 177] Skipping warmup because no prompt parameters found.
+[Iter 178] Skipping warmup because no prompt parameters found.
+[Iter 179] Skipping warmup because no prompt parameters found.
+[Iter 180] Skipping warmup because no prompt parameters found.
+[Iter 181] Skipping warmup because no prompt parameters found.
+[Iter 182] Skipping warmup because no prompt parameters found.
+[Iter 183] Skipping warmup because no prompt parameters found.
+[Iter 184] Skipping warmup because no prompt parameters found.
+[Iter 185] Skipping warmup because no prompt parameters found.
+[Iter 186] Skipping warmup because no prompt parameters found.
+[Iter 187] Skipping warmup because no prompt parameters found.
+[Iter 188] Skipping warmup because no prompt parameters found.
+[Iter 189] Skipping warmup because no prompt parameters found.
+[Iter 190] Skipping warmup because no prompt parameters found.
+[Iter 191] Skipping warmup because no prompt parameters found.
+[Iter 192] Skipping warmup because no prompt parameters found.
+[Iter 193] Skipping warmup because no prompt parameters found.
+[Iter 194] Skipping warmup because no prompt parameters found.
+[Iter 195] Skipping warmup because no prompt parameters found.
+[Iter 196] Skipping warmup because no prompt parameters found.
+[Iter 197] Skipping warmup because no prompt parameters found.
+[Iter 198] Skipping warmup because no prompt parameters found.
+[Iter 199] Skipping warmup because no prompt parameters found.
+[Iter 200] Skipping warmup because no prompt parameters found.
+[Iter 201] Skipping warmup because no prompt parameters found.
+[Iter 202] Skipping warmup because no prompt parameters found.
+[Iter 203] Skipping warmup because no prompt parameters found.
+[Iter 204] Skipping warmup because no prompt parameters found.
+[Iter 205] Skipping warmup because no prompt parameters found.
+[Iter 206] Skipping warmup because no prompt parameters found.
+[Iter 207] Skipping warmup because no prompt parameters found.
+[Iter 208] Skipping warmup because no prompt parameters found.
+[Iter 209] Skipping warmup because no prompt parameters found.
+[Iter 210] Skipping warmup because no prompt parameters found.
+[Iter 211] Skipping warmup because no prompt parameters found.
+[Iter 212] Skipping warmup because no prompt parameters found.
+[Iter 213] Skipping warmup because no prompt parameters found.
+[Iter 214] Skipping warmup because no prompt parameters found.
+[Iter 215] Skipping warmup because no prompt parameters found.
+[Iter 216] Skipping warmup because no prompt parameters found.
+[Iter 217] Skipping warmup because no prompt parameters found.
+[Iter 218] Skipping warmup because no prompt parameters found.
+[Iter 219] Skipping warmup because no prompt parameters found.
+[Iter 220] Skipping warmup because no prompt parameters found.
+[Iter 221] Skipping warmup because no prompt parameters found.
+[Iter 222] Skipping warmup because no prompt parameters found.
+[Iter 223] Skipping warmup because no prompt parameters found.
+[Iter 224] Skipping warmup because no prompt parameters found.
+[Iter 225] Skipping warmup because no prompt parameters found.
+[Iter 226] Skipping warmup because no prompt parameters found.
+[Iter 227] Skipping warmup because no prompt parameters found.
+[Iter 228] Skipping warmup because no prompt parameters found.
+[Iter 229] Skipping warmup because no prompt parameters found.
+[Iter 230] Skipping warmup because no prompt parameters found.
+[Iter 231] Skipping warmup because no prompt parameters found.
+[Iter 232] Skipping warmup because no prompt parameters found.
+[Iter 233] Skipping warmup because no prompt parameters found.
+[Iter 234] Skipping warmup because no prompt parameters found.
+[Iter 235] Skipping warmup because no prompt parameters found.
+[Iter 236] Skipping warmup because no prompt parameters found.
+[Iter 237] Skipping warmup because no prompt parameters found.
+[Iter 238] Skipping warmup because no prompt parameters found.
+[Iter 239] Skipping warmup because no prompt parameters found.
+[Iter 240] Skipping warmup because no prompt parameters found.
+[Iter 241] Skipping warmup because no prompt parameters found.
+[Iter 242] Skipping warmup because no prompt parameters found.
+[Iter 243] Skipping warmup because no prompt parameters found.
+[Iter 244] Skipping warmup because no prompt parameters found.
+[Iter 245] Skipping warmup because no prompt parameters found.
+[Iter 246] Skipping warmup because no prompt parameters found.
+[Iter 247] Skipping warmup because no prompt parameters found.
+[Iter 248] Skipping warmup because no prompt parameters found.
+[Iter 249] Skipping warmup because no prompt parameters found.
+[Iter 250] Skipping warmup because no prompt parameters found.
+[Iter 251] Skipping warmup because no prompt parameters found.
+[Iter 252] Skipping warmup because no prompt parameters found.
+[Iter 253] Skipping warmup because no prompt parameters found.
+[Iter 254] Skipping warmup because no prompt parameters found.
+[Iter 255] Skipping warmup because no prompt parameters found.
+[Iter 256] Skipping warmup because no prompt parameters found.
+[Iter 257] Skipping warmup because no prompt parameters found.
+[Iter 258] Skipping warmup because no prompt parameters found.
+[Iter 259] Skipping warmup because no prompt parameters found.
+[Iter 260] Skipping warmup because no prompt parameters found.
+[Iter 261] Skipping warmup because no prompt parameters found.
+[Iter 262] Skipping warmup because no prompt parameters found.
+[Iter 263] Skipping warmup because no prompt parameters found.
+[Iter 264] Skipping warmup because no prompt parameters found.
+[Iter 265] Skipping warmup because no prompt parameters found.
+[Iter 266] Skipping warmup because no prompt parameters found.
+[Iter 267] Skipping warmup because no prompt parameters found.
+[Iter 268] Skipping warmup because no prompt parameters found.
+[Iter 269] Skipping warmup because no prompt parameters found.
+[Iter 270] Skipping warmup because no prompt parameters found.
+[Iter 271] Skipping warmup because no prompt parameters found.
+[Iter 272] Skipping warmup because no prompt parameters found.
+[Iter 273] Skipping warmup because no prompt parameters found.
+[Iter 274] Skipping warmup because no prompt parameters found.
+[Iter 275] Skipping warmup because no prompt parameters found.
+[Iter 276] Skipping warmup because no prompt parameters found.
+[Iter 277] Skipping warmup because no prompt parameters found.
+[Iter 278] Skipping warmup because no prompt parameters found.
+[Iter 279] Skipping warmup because no prompt parameters found.
+[Iter 280] Skipping warmup because no prompt parameters found.
+[Iter 281] Skipping warmup because no prompt parameters found.
+[Iter 282] Skipping warmup because no prompt parameters found.
+[Iter 283] Skipping warmup because no prompt parameters found.
+[Iter 284] Skipping warmup because no prompt parameters found.
+[Iter 285] Skipping warmup because no prompt parameters found.
+[Iter 286] Skipping warmup because no prompt parameters found.
+[Iter 287] Skipping warmup because no prompt parameters found.
+[Iter 288] Skipping warmup because no prompt parameters found.
+[Iter 289] Skipping warmup because no prompt parameters found.
+[Iter 290] Skipping warmup because no prompt parameters found.
+[Iter 291] Skipping warmup because no prompt parameters found.
+[Iter 292] Skipping warmup because no prompt parameters found.
+[Iter 293] Skipping warmup because no prompt parameters found.
+[Iter 294] Skipping warmup because no prompt parameters found.
+[Iter 295] Skipping warmup because no prompt parameters found.
+[Iter 296] Skipping warmup because no prompt parameters found.
+[Iter 297] Skipping warmup because no prompt parameters found.
+[Iter 298] Skipping warmup because no prompt parameters found.
+[Iter 299] Skipping warmup because no prompt parameters found.
+[Iter 300] Skipping warmup because no prompt parameters found.
+[Iter 301] Skipping warmup because no prompt parameters found.
+[Iter 302] Skipping warmup because no prompt parameters found.
+[Iter 303] Skipping warmup because no prompt parameters found.
+[Iter 304] Skipping warmup because no prompt parameters found.
+[Iter 305] Skipping warmup because no prompt parameters found.
+[Iter 306] Skipping warmup because no prompt parameters found.
+[Iter 307] Skipping warmup because no prompt parameters found.
+[Iter 308] Skipping warmup because no prompt parameters found.
+[Iter 309] Skipping warmup because no prompt parameters found.
+[Iter 310] Skipping warmup because no prompt parameters found.
+[Iter 311] Skipping warmup because no prompt parameters found.
+[Iter 312] Skipping warmup because no prompt parameters found.
+[Iter 313] Skipping warmup because no prompt parameters found.
+[Iter 314] Skipping warmup because no prompt parameters found.
+[Iter 315] Skipping warmup because no prompt parameters found.
+[Iter 316] Skipping warmup because no prompt parameters found.
+[Iter 317] Skipping warmup because no prompt parameters found.
+[Iter 318] Skipping warmup because no prompt parameters found.
+[Iter 319] Skipping warmup because no prompt parameters found.
+[                               ] 1/400, 0.0 task/s, elapsed: 210s, ETA: 83949s[                               ] 2/400, 0.0 task/s, elapsed: 214s, ETA: 42560s[                               ] 3/400, 0.0 task/s, elapsed: 217s, ETA: 28754s[                               ] 4/400, 0.0 task/s, elapsed: 221s, ETA: 21846s[                               ] 5/400, 0.0 task/s, elapsed: 224s, ETA: 17702s[                               ] 6/400, 0.0 task/s, elapsed: 227s, ETA: 14938s[                               ] 7/400, 0.0 task/s, elapsed: 231s, ETA: 12963s[                               ] 8/400, 0.0 task/s, elapsed: 234s, ETA: 11482s[                               ] 9/400, 0.0 task/s, elapsed: 238s, ETA: 10328s[                              ] 10/400, 0.0 task/s, elapsed: 241s, ETA:  9406s[                              ] 11/400, 0.0 task/s, elapsed: 245s, ETA:  8650s[                              ] 12/400, 0.0 task/s, elapsed: 248s, ETA:  8020s[                              ] 13/400, 0.1 task/s, elapsed: 251s, ETA:  7485s[>                             ] 14/400, 0.1 task/s, elapsed: 255s, ETA:  7027s[>                             ] 15/400, 0.1 task/s, elapsed: 258s, ETA:  6630s[>                             ] 16/400, 0.1 task/s, elapsed: 262s, ETA:  6281s[>                             ] 17/400, 0.1 task/s, elapsed: 265s, ETA:  5974s[>                             ] 18/400, 0.1 task/s, elapsed: 269s, ETA:  5701s[>                             ] 19/400, 0.1 task/s, elapsed: 272s, ETA:  5456s[>                             ] 20/400, 0.1 task/s, elapsed: 275s, ETA:  5234s[>                             ] 21/400, 0.1 task/s, elapsed: 279s, ETA:  5034s[>                             ] 22/400, 0.1 task/s, elapsed: 282s, ETA:  4852s[>                             ] 23/400, 0.1 task/s, elapsed: 286s, ETA:  4685s[>                             ] 24/400, 0.1 task/s, elapsed: 289s, ETA:  4532s[>                             ] 25/400, 0.1 task/s, elapsed: 293s, ETA:  4391s[>                             ] 26/400, 0.1 task/s, elapsed: 296s, ETA:  4260s[>>                            ] 27/400, 0.1 task/s, elapsed: 300s, ETA:  4138s[>>                            ] 28/400, 0.1 task/s, elapsed: 303s, ETA:  4026s[>>                            ] 29/400, 0.1 task/s, elapsed: 306s, ETA:  3921s[>>                            ] 30/400, 0.1 task/s, elapsed: 310s, ETA:  3822s[>>                            ] 31/400, 0.1 task/s, elapsed: 313s, ETA:  3730s[>>                            ] 32/400, 0.1 task/s, elapsed: 317s, ETA:  3643s[>>                            ] 33/400, 0.1 task/s, elapsed: 320s, ETA:  3562s[>>                            ] 34/400, 0.1 task/s, elapsed: 324s, ETA:  3485s[>>                            ] 35/400, 0.1 task/s, elapsed: 327s, ETA:  3412s[>>                            ] 36/400, 0.1 task/s, elapsed: 331s, ETA:  3343s[>>                            ] 37/400, 0.1 task/s, elapsed: 334s, ETA:  3278s[>>                            ] 38/400, 0.1 task/s, elapsed: 338s, ETA:  3216s[>>                            ] 39/400, 0.1 task/s, elapsed: 341s, ETA:  3157s[>>>                           ] 40/400, 0.1 task/s, elapsed: 344s, ETA:  3100s[>>>                           ] 41/400, 0.1 task/s, elapsed: 348s, ETA:  3046s[>>>                           ] 42/400, 0.1 task/s, elapsed: 351s, ETA:  2995s[>>>                           ] 43/400, 0.1 task/s, elapsed: 355s, ETA:  2946s[>>>                           ] 44/400, 0.1 task/s, elapsed: 358s, ETA:  2899s[>>>                           ] 45/400, 0.1 task/s, elapsed: 362s, ETA:  2854s[>>>                           ] 46/400, 0.1 task/s, elapsed: 365s, ETA:  2811s[>>>                           ] 47/400, 0.1 task/s, elapsed: 369s, ETA:  2769s[>>>                           ] 48/400, 0.1 task/s, elapsed: 372s, ETA:  2729s[>>>                           ] 49/400, 0.1 task/s, elapsed: 376s, ETA:  2691s[>>>                           ] 50/400, 0.1 task/s, elapsed: 379s, ETA:  2654s[>>>                           ] 51/400, 0.1 task/s, elapsed: 383s, ETA:  2618s[>>>                           ] 52/400, 0.1 task/s, elapsed: 386s, ETA:  2584s[>>>                           ] 53/400, 0.1 task/s, elapsed: 389s, ETA:  2550s[>>>>                          ] 54/400, 0.1 task/s, elapsed: 393s, ETA:  2518s[>>>>                          ] 55/400, 0.1 task/s, elapsed: 396s, ETA:  2487s[>>>>                          ] 56/400, 0.1 task/s, elapsed: 400s, ETA:  2456s[>>>>                          ] 57/400, 0.1 task/s, elapsed: 403s, ETA:  2427s[>>>>                          ] 58/400, 0.1 task/s, elapsed: 407s, ETA:  2399s[>>>>                          ] 59/400, 0.1 task/s, elapsed: 410s, ETA:  2371s[>>>>                          ] 60/400, 0.1 task/s, elapsed: 414s, ETA:  2344s[>>>>                          ] 61/400, 0.1 task/s, elapsed: 417s, ETA:  2318s[>>>>                          ] 62/400, 0.1 task/s, elapsed: 421s, ETA:  2293s[>>>>                          ] 63/400, 0.1 task/s, elapsed: 424s, ETA:  2269s[>>>>                          ] 64/400, 0.1 task/s, elapsed: 428s, ETA:  2245s[>>>>                          ] 65/400, 0.2 task/s, elapsed: 431s, ETA:  2221s[>>>>                          ] 66/400, 0.2 task/s, elapsed: 434s, ETA:  2199s[>>>>>                         ] 67/400, 0.2 task/s, elapsed: 438s, ETA:  2177s[>>>>>                         ] 68/400, 0.2 task/s, elapsed: 441s, ETA:  2155s[>>>>>                         ] 69/400, 0.2 task/s, elapsed: 445s, ETA:  2134s[>>>>>                         ] 70/400, 0.2 task/s, elapsed: 448s, ETA:  2114s[>>>>>                         ] 71/400, 0.2 task/s, elapsed: 452s, ETA:  2093s[>>>>>                         ] 72/400, 0.2 task/s, elapsed: 455s, ETA:  2074s[>>>>>                         ] 73/400, 0.2 task/s, elapsed: 459s, ETA:  2055s[>>>>>                         ] 74/400, 0.2 task/s, elapsed: 462s, ETA:  2036s[>>>>>                         ] 75/400, 0.2 task/s, elapsed: 466s, ETA:  2018s[>>>>>                         ] 76/400, 0.2 task/s, elapsed: 469s, ETA:  2000s[>>>>>                         ] 77/400, 0.2 task/s, elapsed: 473s, ETA:  1982s[>>>>>                         ] 78/400, 0.2 task/s, elapsed: 476s, ETA:  1965s[>>>>>                         ] 79/400, 0.2 task/s, elapsed: 479s, ETA:  1948s[>>>>>>                        ] 80/400, 0.2 task/s, elapsed: 483s, ETA:  1931s
+writing results to work_dirs/res.pkl
+per class results:
+
++---------------+-------+-------+
+| Class         | IoU   | Acc   |
++---------------+-------+-------+
+| road          | 72.62 | 87.84 |
+| sidewalk      | 14.83 | 21.67 |
+| building      | 26.21 | 37.79 |
+| wall          | 6.35  | 13.14 |
+| fence         | 0.26  | 0.32  |
+| pole          | 1.26  | 2.26  |
+| traffic light | 0.26  | 0.44  |
+| traffic sign  | 0.21  | 0.29  |
+| vegetation    | 15.33 | 55.66 |
+| terrain       | 0.25  | 3.07  |
+| sky           | 8.43  | 8.59  |
+| person        | 0.31  | 0.63  |
+| rider         | 0.0   | 0.0   |
+| car           | 4.13  | 6.03  |
+| truck         | 0.0   | 0.0   |
+| bus           | 0.0   | 0.0   |
+| train         | 0.0   | 0.0   |
+| motorcycle    | 0.0   | 0.0   |
+| bicycle       | 0.01  | 0.01  |
++---------------+-------+-------+
+Summary:
+
++--------+------+-------+-------+
+| Scope  | mIoU | mAcc  | aAcc  |
++--------+------+-------+-------+
+| global | 7.92 | 12.51 | 46.55 |
++--------+------+-------+-------+
+Logged mIoU: 0.07919999999999999
+[                                                  ] 0/400, elapsed: 0s, ETA:[Iter 0] Skipping warmup because no prompt parameters found.
+[Iter 1] Skipping warmup because no prompt parameters found.
+[Iter 2] Skipping warmup because no prompt parameters found.
+[Iter 3] Skipping warmup because no prompt parameters found.
+[Iter 4] Skipping warmup because no prompt parameters found.
+[Iter 5] Skipping warmup because no prompt parameters found.
+[Iter 6] Skipping warmup because no prompt parameters found.
+[Iter 7] Skipping warmup because no prompt parameters found.
+[Iter 8] Skipping warmup because no prompt parameters found.
+[Iter 9] Skipping warmup because no prompt parameters found.
+[Iter 10] Skipping warmup because no prompt parameters found.
+[Iter 11] Skipping warmup because no prompt parameters found.
+[Iter 12] Skipping warmup because no prompt parameters found.
+[Iter 13] Skipping warmup because no prompt parameters found.
+[Iter 14] Skipping warmup because no prompt parameters found.
+[Iter 15] Skipping warmup because no prompt parameters found.
+[Iter 16] Skipping warmup because no prompt parameters found.
+[Iter 17] Skipping warmup because no prompt parameters found.
+[Iter 18] Skipping warmup because no prompt parameters found.
+[Iter 19] Skipping warmup because no prompt parameters found.
+[Iter 20] Skipping warmup because no prompt parameters found.
+[Iter 21] Skipping warmup because no prompt parameters found.
+[Iter 22] Skipping warmup because no prompt parameters found.
+[Iter 23] Skipping warmup because no prompt parameters found.
+[Iter 24] Skipping warmup because no prompt parameters found.
+[Iter 25] Skipping warmup because no prompt parameters found.
+[Iter 26] Skipping warmup because no prompt parameters found.
+[Iter 27] Skipping warmup because no prompt parameters found.
+[Iter 28] Skipping warmup because no prompt parameters found.
+[Iter 29] Skipping warmup because no prompt parameters found.
+[Iter 30] Skipping warmup because no prompt parameters found.
+[Iter 31] Skipping warmup because no prompt parameters found.
+[Iter 32] Skipping warmup because no prompt parameters found.
+[Iter 33] Skipping warmup because no prompt parameters found.
+[Iter 34] Skipping warmup because no prompt parameters found.
+[Iter 35] Skipping warmup because no prompt parameters found.
+[Iter 36] Skipping warmup because no prompt parameters found.
+[Iter 37] Skipping warmup because no prompt parameters found.
+[Iter 38] Skipping warmup because no prompt parameters found.
+[Iter 39] Skipping warmup because no prompt parameters found.
+[Iter 40] Skipping warmup because no prompt parameters found.
+[Iter 41] Skipping warmup because no prompt parameters found.
+[Iter 42] Skipping warmup because no prompt parameters found.
+[Iter 43] Skipping warmup because no prompt parameters found.
+[Iter 44] Skipping warmup because no prompt parameters found.
+[Iter 45] Skipping warmup because no prompt parameters found.
+[Iter 46] Skipping warmup because no prompt parameters found.
+[Iter 47] Skipping warmup because no prompt parameters found.
+[Iter 48] Skipping warmup because no prompt parameters found.
+[Iter 49] Skipping warmup because no prompt parameters found.
+[Iter 50] Skipping warmup because no prompt parameters found.
+[Iter 51] Skipping warmup because no prompt parameters found.
+[Iter 52] Skipping warmup because no prompt parameters found.
+[Iter 53] Skipping warmup because no prompt parameters found.
+[Iter 54] Skipping warmup because no prompt parameters found.
+[Iter 55] Skipping warmup because no prompt parameters found.
+[Iter 56] Skipping warmup because no prompt parameters found.
+[Iter 57] Skipping warmup because no prompt parameters found.
+[Iter 58] Skipping warmup because no prompt parameters found.
+[Iter 59] Skipping warmup because no prompt parameters found.
+[Iter 60] Skipping warmup because no prompt parameters found.
+[Iter 61] Skipping warmup because no prompt parameters found.
+[Iter 62] Skipping warmup because no prompt parameters found.
+[Iter 63] Skipping warmup because no prompt parameters found.
+[Iter 64] Skipping warmup because no prompt parameters found.
+[Iter 65] Skipping warmup because no prompt parameters found.
+[Iter 66] Skipping warmup because no prompt parameters found.
+[Iter 67] Skipping warmup because no prompt parameters found.
+[Iter 68] Skipping warmup because no prompt parameters found.
+[Iter 69] Skipping warmup because no prompt parameters found.
+[Iter 70] Skipping warmup because no prompt parameters found.
+[Iter 71] Skipping warmup because no prompt parameters found.
+[Iter 72] Skipping warmup because no prompt parameters found.
+[Iter 73] Skipping warmup because no prompt parameters found.
+[Iter 74] Skipping warmup because no prompt parameters found.
+[Iter 75] Skipping warmup because no prompt parameters found.
+[Iter 76] Skipping warmup because no prompt parameters found.
+[Iter 77] Skipping warmup because no prompt parameters found.
+[Iter 78] Skipping warmup because no prompt parameters found.
+[Iter 79] Skipping warmup because no prompt parameters found.
+[Iter 80] Skipping warmup because no prompt parameters found.
+[Iter 81] Skipping warmup because no prompt parameters found.
+[Iter 82] Skipping warmup because no prompt parameters found.
+[Iter 83] Skipping warmup because no prompt parameters found.
+[Iter 84] Skipping warmup because no prompt parameters found.
+[Iter 85] Skipping warmup because no prompt parameters found.
+[Iter 86] Skipping warmup because no prompt parameters found.
+[Iter 87] Skipping warmup because no prompt parameters found.
+[Iter 88] Skipping warmup because no prompt parameters found.
+[Iter 89] Skipping warmup because no prompt parameters found.
+[Iter 90] Skipping warmup because no prompt parameters found.
+[Iter 91] Skipping warmup because no prompt parameters found.
+[Iter 92] Skipping warmup because no prompt parameters found.
+[Iter 93] Skipping warmup because no prompt parameters found.
+[Iter 94] Skipping warmup because no prompt parameters found.
+[Iter 95] Skipping warmup because no prompt parameters found.
+[Iter 96] Skipping warmup because no prompt parameters found.
+[Iter 97] Skipping warmup because no prompt parameters found.
+[Iter 98] Skipping warmup because no prompt parameters found.
+[Iter 99] Skipping warmup because no prompt parameters found.
+[Iter 100] Skipping warmup because no prompt parameters found.
+[Iter 101] Skipping warmup because no prompt parameters found.
+[Iter 102] Skipping warmup because no prompt parameters found.
+[Iter 103] Skipping warmup because no prompt parameters found.
+[Iter 104] Skipping warmup because no prompt parameters found.
+[Iter 105] Skipping warmup because no prompt parameters found.
+[Iter 106] Skipping warmup because no prompt parameters found.
+[Iter 107] Skipping warmup because no prompt parameters found.
+[Iter 108] Skipping warmup because no prompt parameters found.
+[Iter 109] Skipping warmup because no prompt parameters found.
+[Iter 110] Skipping warmup because no prompt parameters found.
+[Iter 111] Skipping warmup because no prompt parameters found.
+[Iter 112] Skipping warmup because no prompt parameters found.
+[Iter 113] Skipping warmup because no prompt parameters found.
+[Iter 114] Skipping warmup because no prompt parameters found.
+[Iter 115] Skipping warmup because no prompt parameters found.
+[Iter 116] Skipping warmup because no prompt parameters found.
+[Iter 117] Skipping warmup because no prompt parameters found.
+[Iter 118] Skipping warmup because no prompt parameters found.
+[Iter 119] Skipping warmup because no prompt parameters found.
+[Iter 120] Skipping warmup because no prompt parameters found.
+[Iter 121] Skipping warmup because no prompt parameters found.
+[Iter 122] Skipping warmup because no prompt parameters found.
+[Iter 123] Skipping warmup because no prompt parameters found.
+[Iter 124] Skipping warmup because no prompt parameters found.
+[Iter 125] Skipping warmup because no prompt parameters found.
+[Iter 126] Skipping warmup because no prompt parameters found.
+[Iter 127] Skipping warmup because no prompt parameters found.
+[Iter 128] Skipping warmup because no prompt parameters found.
+[Iter 129] Skipping warmup because no prompt parameters found.
+[Iter 130] Skipping warmup because no prompt parameters found.
+[Iter 131] Skipping warmup because no prompt parameters found.
+[Iter 132] Skipping warmup because no prompt parameters found.
+[Iter 133] Skipping warmup because no prompt parameters found.
+[Iter 134] Skipping warmup because no prompt parameters found.
+[Iter 135] Skipping warmup because no prompt parameters found.
+[Iter 136] Skipping warmup because no prompt parameters found.
+[Iter 137] Skipping warmup because no prompt parameters found.
+[Iter 138] Skipping warmup because no prompt parameters found.
+[Iter 139] Skipping warmup because no prompt parameters found.
+[Iter 140] Skipping warmup because no prompt parameters found.
+[Iter 141] Skipping warmup because no prompt parameters found.
+[Iter 142] Skipping warmup because no prompt parameters found.
+[Iter 143] Skipping warmup because no prompt parameters found.
+[Iter 144] Skipping warmup because no prompt parameters found.
+[Iter 145] Skipping warmup because no prompt parameters found.
+[Iter 146] Skipping warmup because no prompt parameters found.
+[Iter 147] Skipping warmup because no prompt parameters found.
+[Iter 148] Skipping warmup because no prompt parameters found.
+[Iter 149] Skipping warmup because no prompt parameters found.
+[Iter 150] Skipping warmup because no prompt parameters found.
+[Iter 151] Skipping warmup because no prompt parameters found.
+[Iter 152] Skipping warmup because no prompt parameters found.
+[Iter 153] Skipping warmup because no prompt parameters found.
+[Iter 154] Skipping warmup because no prompt parameters found.
+[Iter 155] Skipping warmup because no prompt parameters found.
+[Iter 156] Skipping warmup because no prompt parameters found.
+[Iter 157] Skipping warmup because no prompt parameters found.
+[Iter 158] Skipping warmup because no prompt parameters found.
+[Iter 159] Skipping warmup because no prompt parameters found.
+[Iter 160] Skipping warmup because no prompt parameters found.
+[Iter 161] Skipping warmup because no prompt parameters found.
+[Iter 162] Skipping warmup because no prompt parameters found.
+[Iter 163] Skipping warmup because no prompt parameters found.
+[Iter 164] Skipping warmup because no prompt parameters found.
+[Iter 165] Skipping warmup because no prompt parameters found.
+[Iter 166] Skipping warmup because no prompt parameters found.
+[Iter 167] Skipping warmup because no prompt parameters found.
+[Iter 168] Skipping warmup because no prompt parameters found.
+[Iter 169] Skipping warmup because no prompt parameters found.
+[Iter 170] Skipping warmup because no prompt parameters found.
+[Iter 171] Skipping warmup because no prompt parameters found.
+[Iter 172] Skipping warmup because no prompt parameters found.
+[Iter 173] Skipping warmup because no prompt parameters found.
+[Iter 174] Skipping warmup because no prompt parameters found.
+[Iter 175] Skipping warmup because no prompt parameters found.
+[Iter 176] Skipping warmup because no prompt parameters found.
+[Iter 177] Skipping warmup because no prompt parameters found.
+[Iter 178] Skipping warmup because no prompt parameters found.
+[Iter 179] Skipping warmup because no prompt parameters found.
+[Iter 180] Skipping warmup because no prompt parameters found.
+[Iter 181] Skipping warmup because no prompt parameters found.
+[Iter 182] Skipping warmup because no prompt parameters found.
+[Iter 183] Skipping warmup because no prompt parameters found.
+[Iter 184] Skipping warmup because no prompt parameters found.
+[Iter 185] Skipping warmup because no prompt parameters found.
+[Iter 186] Skipping warmup because no prompt parameters found.
+[Iter 187] Skipping warmup because no prompt parameters found.
+[Iter 188] Skipping warmup because no prompt parameters found.
+[Iter 189] Skipping warmup because no prompt parameters found.
+[Iter 190] Skipping warmup because no prompt parameters found.
+[Iter 191] Skipping warmup because no prompt parameters found.
+[Iter 192] Skipping warmup because no prompt parameters found.
+[Iter 193] Skipping warmup because no prompt parameters found.
+[Iter 194] Skipping warmup because no prompt parameters found.
+[Iter 195] Skipping warmup because no prompt parameters found.
+[Iter 196] Skipping warmup because no prompt parameters found.
+[Iter 197] Skipping warmup because no prompt parameters found.
+[Iter 198] Skipping warmup because no prompt parameters found.
+[Iter 199] Skipping warmup because no prompt parameters found.
+[Iter 200] Skipping warmup because no prompt parameters found.
+[Iter 201] Skipping warmup because no prompt parameters found.
+[Iter 202] Skipping warmup because no prompt parameters found.
+[Iter 203] Skipping warmup because no prompt parameters found.
+[Iter 204] Skipping warmup because no prompt parameters found.
+[Iter 205] Skipping warmup because no prompt parameters found.
+[Iter 206] Skipping warmup because no prompt parameters found.
+[Iter 207] Skipping warmup because no prompt parameters found.
+[Iter 208] Skipping warmup because no prompt parameters found.
+[Iter 209] Skipping warmup because no prompt parameters found.
+[Iter 210] Skipping warmup because no prompt parameters found.
+[Iter 211] Skipping warmup because no prompt parameters found.
+[Iter 212] Skipping warmup because no prompt parameters found.
+[Iter 213] Skipping warmup because no prompt parameters found.
+[Iter 214] Skipping warmup because no prompt parameters found.
+[Iter 215] Skipping warmup because no prompt parameters found.
+[Iter 216] Skipping warmup because no prompt parameters found.
+[Iter 217] Skipping warmup because no prompt parameters found.
+[Iter 218] Skipping warmup because no prompt parameters found.
+[Iter 219] Skipping warmup because no prompt parameters found.
+[Iter 220] Skipping warmup because no prompt parameters found.
+[Iter 221] Skipping warmup because no prompt parameters found.
+[Iter 222] Skipping warmup because no prompt parameters found.
+[Iter 223] Skipping warmup because no prompt parameters found.
+[Iter 224] Skipping warmup because no prompt parameters found.
+[Iter 225] Skipping warmup because no prompt parameters found.
+[Iter 226] Skipping warmup because no prompt parameters found.
+[Iter 227] Skipping warmup because no prompt parameters found.
+[Iter 228] Skipping warmup because no prompt parameters found.
+[Iter 229] Skipping warmup because no prompt parameters found.
+[Iter 230] Skipping warmup because no prompt parameters found.
+[Iter 231] Skipping warmup because no prompt parameters found.
+[Iter 232] Skipping warmup because no prompt parameters found.
+[Iter 233] Skipping warmup because no prompt parameters found.
+[Iter 234] Skipping warmup because no prompt parameters found.
+[Iter 235] Skipping warmup because no prompt parameters found.
+[Iter 236] Skipping warmup because no prompt parameters found.
+[Iter 237] Skipping warmup because no prompt parameters found.
+[Iter 238] Skipping warmup because no prompt parameters found.
+[Iter 239] Skipping warmup because no prompt parameters found.
+[Iter 240] Skipping warmup because no prompt parameters found.
+[Iter 241] Skipping warmup because no prompt parameters found.
+[Iter 242] Skipping warmup because no prompt parameters found.
+[Iter 243] Skipping warmup because no prompt parameters found.
+[Iter 244] Skipping warmup because no prompt parameters found.
+[Iter 245] Skipping warmup because no prompt parameters found.
+[Iter 246] Skipping warmup because no prompt parameters found.
+[Iter 247] Skipping warmup because no prompt parameters found.
+[Iter 248] Skipping warmup because no prompt parameters found.
+[Iter 249] Skipping warmup because no prompt parameters found.
+[Iter 250] Skipping warmup because no prompt parameters found.
+[Iter 251] Skipping warmup because no prompt parameters found.
+[Iter 252] Skipping warmup because no prompt parameters found.
+[Iter 253] Skipping warmup because no prompt parameters found.
+[Iter 254] Skipping warmup because no prompt parameters found.
+[Iter 255] Skipping warmup because no prompt parameters found.
+[Iter 256] Skipping warmup because no prompt parameters found.
+[Iter 257] Skipping warmup because no prompt parameters found.
+[Iter 258] Skipping warmup because no prompt parameters found.
+[Iter 259] Skipping warmup because no prompt parameters found.
+[Iter 260] Skipping warmup because no prompt parameters found.
+[Iter 261] Skipping warmup because no prompt parameters found.
+[Iter 262] Skipping warmup because no prompt parameters found.
+[Iter 263] Skipping warmup because no prompt parameters found.
+[Iter 264] Skipping warmup because no prompt parameters found.
+[Iter 265] Skipping warmup because no prompt parameters found.
+[Iter 266] Skipping warmup because no prompt parameters found.
+[Iter 267] Skipping warmup because no prompt parameters found.
+[Iter 268] Skipping warmup because no prompt parameters found.
+[Iter 269] Skipping warmup because no prompt parameters found.
+[Iter 270] Skipping warmup because no prompt parameters found.
+[Iter 271] Skipping warmup because no prompt parameters found.
+[Iter 272] Skipping warmup because no prompt parameters found.
+[Iter 273] Skipping warmup because no prompt parameters found.
+[Iter 274] Skipping warmup because no prompt parameters found.
+[Iter 275] Skipping warmup because no prompt parameters found.
+[Iter 276] Skipping warmup because no prompt parameters found.
+[Iter 277] Skipping warmup because no prompt parameters found.
+[Iter 278] Skipping warmup because no prompt parameters found.
+[Iter 279] Skipping warmup because no prompt parameters found.
+[Iter 280] Skipping warmup because no prompt parameters found.
+[Iter 281] Skipping warmup because no prompt parameters found.
+[Iter 282] Skipping warmup because no prompt parameters found.
+[Iter 283] Skipping warmup because no prompt parameters found.
+[Iter 284] Skipping warmup because no prompt parameters found.
+[Iter 285] Skipping warmup because no prompt parameters found.
+[Iter 286] Skipping warmup because no prompt parameters found.
+[Iter 287] Skipping warmup because no prompt parameters found.
+[Iter 288] Skipping warmup because no prompt parameters found.
+[Iter 289] Skipping warmup because no prompt parameters found.
+[Iter 290] Skipping warmup because no prompt parameters found.
+[Iter 291] Skipping warmup because no prompt parameters found.
+[Iter 292] Skipping warmup because no prompt parameters found.
+[Iter 293] Skipping warmup because no prompt parameters found.
+[Iter 294] Skipping warmup because no prompt parameters found.
+[Iter 295] Skipping warmup because no prompt parameters found.
+[Iter 296] Skipping warmup because no prompt parameters found.
+[Iter 297] Skipping warmup because no prompt parameters found.
+[Iter 298] Skipping warmup because no prompt parameters found.
+[Iter 299] Skipping warmup because no prompt parameters found.
+[Iter 300] Skipping warmup because no prompt parameters found.
+[Iter 301] Skipping warmup because no prompt parameters found.
+[Iter 302] Skipping warmup because no prompt parameters found.
+[Iter 303] Skipping warmup because no prompt parameters found.
+[Iter 304] Skipping warmup because no prompt parameters found.
+[Iter 305] Skipping warmup because no prompt parameters found.
+[Iter 306] Skipping warmup because no prompt parameters found.
+[Iter 307] Skipping warmup because no prompt parameters found.
+[Iter 308] Skipping warmup because no prompt parameters found.
+[Iter 309] Skipping warmup because no prompt parameters found.
+[Iter 310] Skipping warmup because no prompt parameters found.
+[Iter 311] Skipping warmup because no prompt parameters found.
+[Iter 312] Skipping warmup because no prompt parameters found.
+[Iter 313] Skipping warmup because no prompt parameters found.
+[Iter 314] Skipping warmup because no prompt parameters found.
+[Iter 315] Skipping warmup because no prompt parameters found.
+[Iter 316] Skipping warmup because no prompt parameters found.
+[Iter 317] Skipping warmup because no prompt parameters found.
+[Iter 318] Skipping warmup because no prompt parameters found.
+[Iter 319] Skipping warmup because no prompt parameters found.
+[                               ] 1/400, 0.0 task/s, elapsed: 210s, ETA: 83701s[                               ] 2/400, 0.0 task/s, elapsed: 213s, ETA: 42423s[                               ] 3/400, 0.0 task/s, elapsed: 217s, ETA: 28661s[                               ] 4/400, 0.0 task/s, elapsed: 220s, ETA: 21780s[                               ] 5/400, 0.0 task/s, elapsed: 223s, ETA: 17648s[                               ] 6/400, 0.0 task/s, elapsed: 227s, ETA: 14893s[                               ] 7/400, 0.0 task/s, elapsed: 230s, ETA: 12924s[                               ] 8/400, 0.0 task/s, elapsed: 234s, ETA: 11445s[                               ] 9/400, 0.0 task/s, elapsed: 237s, ETA: 10296s[                              ] 10/400, 0.0 task/s, elapsed: 240s, ETA:  9376s[                              ] 11/400, 0.0 task/s, elapsed: 244s, ETA:  8623s[                              ] 12/400, 0.0 task/s, elapsed: 247s, ETA:  7995s[                              ] 13/400, 0.1 task/s, elapsed: 251s, ETA:  7462s[>                             ] 14/400, 0.1 task/s, elapsed: 254s, ETA:  7005s[>                             ] 15/400, 0.1 task/s, elapsed: 257s, ETA:  6609s[>                             ] 16/400, 0.1 task/s, elapsed: 261s, ETA:  6262s[>                             ] 17/400, 0.1 task/s, elapsed: 264s, ETA:  5956s[>                             ] 18/400, 0.1 task/s, elapsed: 268s, ETA:  5683s[>                             ] 19/400, 0.1 task/s, elapsed: 271s, ETA:  5438s[>                             ] 20/400, 0.1 task/s, elapsed: 275s, ETA:  5218s[>                             ] 21/400, 0.1 task/s, elapsed: 278s, ETA:  5019s[>                             ] 22/400, 0.1 task/s, elapsed: 282s, ETA:  4837s[>                             ] 23/400, 0.1 task/s, elapsed: 285s, ETA:  4671s[>                             ] 24/400, 0.1 task/s, elapsed: 288s, ETA:  4518s[>                             ] 25/400, 0.1 task/s, elapsed: 292s, ETA:  4377s[>                             ] 26/400, 0.1 task/s, elapsed: 295s, ETA:  4247s[>>                            ] 27/400, 0.1 task/s, elapsed: 299s, ETA:  4127s[>>                            ] 28/400, 0.1 task/s, elapsed: 302s, ETA:  4014s[>>                            ] 29/400, 0.1 task/s, elapsed: 306s, ETA:  3909s[>>                            ] 30/400, 0.1 task/s, elapsed: 309s, ETA:  3811s[>>                            ] 31/400, 0.1 task/s, elapsed: 312s, ETA:  3719s[>>                            ] 32/400, 0.1 task/s, elapsed: 316s, ETA:  3633s[>>                            ] 33/400, 0.1 task/s, elapsed: 319s, ETA:  3552s[>>                            ] 34/400, 0.1 task/s, elapsed: 323s, ETA:  3475s[>>                            ] 35/400, 0.1 task/s, elapsed: 326s, ETA:  3402s[>>                            ] 36/400, 0.1 task/s, elapsed: 330s, ETA:  3334s[>>                            ] 37/400, 0.1 task/s, elapsed: 333s, ETA:  3268s[>>                            ] 38/400, 0.1 task/s, elapsed: 337s, ETA:  3207s[>>                            ] 39/400, 0.1 task/s, elapsed: 340s, ETA:  3148s[>>>                           ] 40/400, 0.1 task/s, elapsed: 343s, ETA:  3091s[>>>                           ] 41/400, 0.1 task/s, elapsed: 347s, ETA:  3037s[>>>                           ] 42/400, 0.1 task/s, elapsed: 350s, ETA:  2987s[>>>                           ] 43/400, 0.1 task/s, elapsed: 354s, ETA:  2938s[>>>                           ] 44/400, 0.1 task/s, elapsed: 357s, ETA:  2891s[>>>                           ] 45/400, 0.1 task/s, elapsed: 361s, ETA:  2846s[>>>                           ] 46/400, 0.1 task/s, elapsed: 364s, ETA:  2803s[>>>                           ] 47/400, 0.1 task/s, elapsed: 368s, ETA:  2761s[>>>                           ] 48/400, 0.1 task/s, elapsed: 371s, ETA:  2721s[>>>                           ] 49/400, 0.1 task/s, elapsed: 375s, ETA:  2683s[>>>                           ] 50/400, 0.1 task/s, elapsed: 378s, ETA:  2646s[>>>                           ] 51/400, 0.1 task/s, elapsed: 381s, ETA:  2610s[>>>                           ] 52/400, 0.1 task/s, elapsed: 385s, ETA:  2576s[>>>                           ] 53/400, 0.1 task/s, elapsed: 388s, ETA:  2543s[>>>>                          ] 54/400, 0.1 task/s, elapsed: 392s, ETA:  2510s[>>>>                          ] 55/400, 0.1 task/s, elapsed: 395s, ETA:  2479s[>>>>                          ] 56/400, 0.1 task/s, elapsed: 399s, ETA:  2449s[>>>>                          ] 57/400, 0.1 task/s, elapsed: 402s, ETA:  2420s[>>>>                          ] 58/400, 0.1 task/s, elapsed: 406s, ETA:  2392s[>>>>                          ] 59/400, 0.1 task/s, elapsed: 409s, ETA:  2364s[>>>>                          ] 60/400, 0.1 task/s, elapsed: 413s, ETA:  2338s[>>>>                          ] 61/400, 0.1 task/s, elapsed: 416s, ETA:  2312s[>>>>                          ] 62/400, 0.1 task/s, elapsed: 419s, ETA:  2287s[>>>>                          ] 63/400, 0.1 task/s, elapsed: 423s, ETA:  2262s[>>>>                          ] 64/400, 0.2 task/s, elapsed: 426s, ETA:  2238s[>>>>                          ] 65/400, 0.2 task/s, elapsed: 430s, ETA:  2215s[>>>>                          ] 66/400, 0.2 task/s, elapsed: 433s, ETA:  2193s[>>>>>                         ] 67/400, 0.2 task/s, elapsed: 437s, ETA:  2171s[>>>>>                         ] 68/400, 0.2 task/s, elapsed: 440s, ETA:  2149s[>>>>>                         ] 69/400, 0.2 task/s, elapsed: 444s, ETA:  2128s[>>>>>                         ] 70/400, 0.2 task/s, elapsed: 447s, ETA:  2108s[>>>>>                         ] 71/400, 0.2 task/s, elapsed: 451s, ETA:  2088s[>>>>>                         ] 72/400, 0.2 task/s, elapsed: 454s, ETA:  2068s[>>>>>                         ] 73/400, 0.2 task/s, elapsed: 457s, ETA:  2049s[>>>>>                         ] 74/400, 0.2 task/s, elapsed: 461s, ETA:  2031s[>>>>>                         ] 75/400, 0.2 task/s, elapsed: 464s, ETA:  2012s[>>>>>                         ] 76/400, 0.2 task/s, elapsed: 468s, ETA:  1994s[>>>>>                         ] 77/400, 0.2 task/s, elapsed: 471s, ETA:  1977s[>>>>>                         ] 78/400, 0.2 task/s, elapsed: 475s, ETA:  1960s[>>>>>                         ] 79/400, 0.2 task/s, elapsed: 478s, ETA:  1943s[>>>>>>                        ] 80/400, 0.2 task/s, elapsed: 482s, ETA:  1926s
+writing results to work_dirs/res.pkl
+per class results:
+
++---------------+-------+-------+
+| Class         | IoU   | Acc   |
++---------------+-------+-------+
+| road          | 55.14 | 62.59 |
+| sidewalk      | 16.55 | 26.65 |
+| building      | 21.42 | 49.16 |
+| wall          | 2.57  | 4.75  |
+| fence         | 1.79  | 2.09  |
+| pole          | 1.0   | 1.65  |
+| traffic light | 0.01  | 0.02  |
+| traffic sign  | 0.26  | 0.5   |
+| vegetation    | 18.39 | 28.06 |
+| terrain       | 2.12  | 3.37  |
+| sky           | 49.38 | 65.68 |
+| person        | 0.0   | 0.0   |
+| rider         | 0.0   | 0.0   |
+| car           | 4.5   | 10.28 |
+| truck         | 0.0   | 0.0   |
+| bus           | 0.0   | 0.0   |
+| train         | 0.0   | 0.0   |
+| motorcycle    | 0.0   | 0.0   |
+| bicycle       | 0.0   | 0.0   |
++---------------+-------+-------+
+Summary:
+
++--------+------+-------+------+
+| Scope  | mIoU | mAcc  | aAcc |
++--------+------+-------+------+
+| global | 9.11 | 13.41 | 46.0 |
++--------+------+-------+------+
+Logged mIoU: 0.0911
+[                                                  ] 0/400, elapsed: 0s, ETA:[Iter 0] Skipping warmup because no prompt parameters found.
+[Iter 1] Skipping warmup because no prompt parameters found.
+[Iter 2] Skipping warmup because no prompt parameters found.
+[Iter 3] Skipping warmup because no prompt parameters found.
+[Iter 4] Skipping warmup because no prompt parameters found.
+[Iter 5] Skipping warmup because no prompt parameters found.
+[Iter 6] Skipping warmup because no prompt parameters found.
+[Iter 7] Skipping warmup because no prompt parameters found.
+[Iter 8] Skipping warmup because no prompt parameters found.
+[Iter 9] Skipping warmup because no prompt parameters found.
+[Iter 10] Skipping warmup because no prompt parameters found.
+[Iter 11] Skipping warmup because no prompt parameters found.
+[Iter 12] Skipping warmup because no prompt parameters found.
+[Iter 13] Skipping warmup because no prompt parameters found.
+[Iter 14] Skipping warmup because no prompt parameters found.
+[Iter 15] Skipping warmup because no prompt parameters found.
+[Iter 16] Skipping warmup because no prompt parameters found.
+[Iter 17] Skipping warmup because no prompt parameters found.
+[Iter 18] Skipping warmup because no prompt parameters found.
+[Iter 19] Skipping warmup because no prompt parameters found.
+[Iter 20] Skipping warmup because no prompt parameters found.
+[Iter 21] Skipping warmup because no prompt parameters found.
+[Iter 22] Skipping warmup because no prompt parameters found.
+[Iter 23] Skipping warmup because no prompt parameters found.
+[Iter 24] Skipping warmup because no prompt parameters found.
+[Iter 25] Skipping warmup because no prompt parameters found.
+[Iter 26] Skipping warmup because no prompt parameters found.
+[Iter 27] Skipping warmup because no prompt parameters found.
+[Iter 28] Skipping warmup because no prompt parameters found.
+[Iter 29] Skipping warmup because no prompt parameters found.
+[Iter 30] Skipping warmup because no prompt parameters found.
+[Iter 31] Skipping warmup because no prompt parameters found.
+[Iter 32] Skipping warmup because no prompt parameters found.
+[Iter 33] Skipping warmup because no prompt parameters found.
+[Iter 34] Skipping warmup because no prompt parameters found.
+[Iter 35] Skipping warmup because no prompt parameters found.
+[Iter 36] Skipping warmup because no prompt parameters found.
+[Iter 37] Skipping warmup because no prompt parameters found.
+[Iter 38] Skipping warmup because no prompt parameters found.
+[Iter 39] Skipping warmup because no prompt parameters found.
+[Iter 40] Skipping warmup because no prompt parameters found.
+[Iter 41] Skipping warmup because no prompt parameters found.
+[Iter 42] Skipping warmup because no prompt parameters found.
+[Iter 43] Skipping warmup because no prompt parameters found.
+[Iter 44] Skipping warmup because no prompt parameters found.
+[Iter 45] Skipping warmup because no prompt parameters found.
+[Iter 46] Skipping warmup because no prompt parameters found.
+[Iter 47] Skipping warmup because no prompt parameters found.
+[Iter 48] Skipping warmup because no prompt parameters found.
+[Iter 49] Skipping warmup because no prompt parameters found.
+[Iter 50] Skipping warmup because no prompt parameters found.
+[Iter 51] Skipping warmup because no prompt parameters found.
+[Iter 52] Skipping warmup because no prompt parameters found.
+[Iter 53] Skipping warmup because no prompt parameters found.
+[Iter 54] Skipping warmup because no prompt parameters found.
+[Iter 55] Skipping warmup because no prompt parameters found.
+[Iter 56] Skipping warmup because no prompt parameters found.
+[Iter 57] Skipping warmup because no prompt parameters found.
+[Iter 58] Skipping warmup because no prompt parameters found.
+[Iter 59] Skipping warmup because no prompt parameters found.
+[Iter 60] Skipping warmup because no prompt parameters found.
+[Iter 61] Skipping warmup because no prompt parameters found.
+[Iter 62] Skipping warmup because no prompt parameters found.
+[Iter 63] Skipping warmup because no prompt parameters found.
+[Iter 64] Skipping warmup because no prompt parameters found.
+[Iter 65] Skipping warmup because no prompt parameters found.
+[Iter 66] Skipping warmup because no prompt parameters found.
+[Iter 67] Skipping warmup because no prompt parameters found.
+[Iter 68] Skipping warmup because no prompt parameters found.
+[Iter 69] Skipping warmup because no prompt parameters found.
+[Iter 70] Skipping warmup because no prompt parameters found.
+[Iter 71] Skipping warmup because no prompt parameters found.
+[Iter 72] Skipping warmup because no prompt parameters found.
+[Iter 73] Skipping warmup because no prompt parameters found.
+[Iter 74] Skipping warmup because no prompt parameters found.
+[Iter 75] Skipping warmup because no prompt parameters found.
+[Iter 76] Skipping warmup because no prompt parameters found.
+[Iter 77] Skipping warmup because no prompt parameters found.
+[Iter 78] Skipping warmup because no prompt parameters found.
+[Iter 79] Skipping warmup because no prompt parameters found.
+[Iter 80] Skipping warmup because no prompt parameters found.
+[Iter 81] Skipping warmup because no prompt parameters found.
+[Iter 82] Skipping warmup because no prompt parameters found.
+[Iter 83] Skipping warmup because no prompt parameters found.
+[Iter 84] Skipping warmup because no prompt parameters found.
+[Iter 85] Skipping warmup because no prompt parameters found.
+[Iter 86] Skipping warmup because no prompt parameters found.
+[Iter 87] Skipping warmup because no prompt parameters found.
+[Iter 88] Skipping warmup because no prompt parameters found.
+[Iter 89] Skipping warmup because no prompt parameters found.
+[Iter 90] Skipping warmup because no prompt parameters found.
+[Iter 91] Skipping warmup because no prompt parameters found.
+[Iter 92] Skipping warmup because no prompt parameters found.
+[Iter 93] Skipping warmup because no prompt parameters found.
+[Iter 94] Skipping warmup because no prompt parameters found.
+[Iter 95] Skipping warmup because no prompt parameters found.
+[Iter 96] Skipping warmup because no prompt parameters found.
+[Iter 97] Skipping warmup because no prompt parameters found.
+[Iter 98] Skipping warmup because no prompt parameters found.
+[Iter 99] Skipping warmup because no prompt parameters found.
+[Iter 100] Skipping warmup because no prompt parameters found.
+[Iter 101] Skipping warmup because no prompt parameters found.
+[Iter 102] Skipping warmup because no prompt parameters found.
+[Iter 103] Skipping warmup because no prompt parameters found.
+[Iter 104] Skipping warmup because no prompt parameters found.
+[Iter 105] Skipping warmup because no prompt parameters found.
+[Iter 106] Skipping warmup because no prompt parameters found.
+[Iter 107] Skipping warmup because no prompt parameters found.
+[Iter 108] Skipping warmup because no prompt parameters found.
+[Iter 109] Skipping warmup because no prompt parameters found.
+[Iter 110] Skipping warmup because no prompt parameters found.
+[Iter 111] Skipping warmup because no prompt parameters found.
+[Iter 112] Skipping warmup because no prompt parameters found.
+[Iter 113] Skipping warmup because no prompt parameters found.
+[Iter 114] Skipping warmup because no prompt parameters found.
+[Iter 115] Skipping warmup because no prompt parameters found.
+[Iter 116] Skipping warmup because no prompt parameters found.
+[Iter 117] Skipping warmup because no prompt parameters found.
+[Iter 118] Skipping warmup because no prompt parameters found.
+[Iter 119] Skipping warmup because no prompt parameters found.
+[Iter 120] Skipping warmup because no prompt parameters found.
+[Iter 121] Skipping warmup because no prompt parameters found.
+[Iter 122] Skipping warmup because no prompt parameters found.
+[Iter 123] Skipping warmup because no prompt parameters found.
+[Iter 124] Skipping warmup because no prompt parameters found.
+[Iter 125] Skipping warmup because no prompt parameters found.
+[Iter 126] Skipping warmup because no prompt parameters found.
+[Iter 127] Skipping warmup because no prompt parameters found.
+[Iter 128] Skipping warmup because no prompt parameters found.
+[Iter 129] Skipping warmup because no prompt parameters found.
+[Iter 130] Skipping warmup because no prompt parameters found.
+[Iter 131] Skipping warmup because no prompt parameters found.
+[Iter 132] Skipping warmup because no prompt parameters found.
+[Iter 133] Skipping warmup because no prompt parameters found.
+[Iter 134] Skipping warmup because no prompt parameters found.
+[Iter 135] Skipping warmup because no prompt parameters found.
+[Iter 136] Skipping warmup because no prompt parameters found.
+[Iter 137] Skipping warmup because no prompt parameters found.
+[Iter 138] Skipping warmup because no prompt parameters found.
+[Iter 139] Skipping warmup because no prompt parameters found.
+[Iter 140] Skipping warmup because no prompt parameters found.
+[Iter 141] Skipping warmup because no prompt parameters found.
+[Iter 142] Skipping warmup because no prompt parameters found.
+[Iter 143] Skipping warmup because no prompt parameters found.
+[Iter 144] Skipping warmup because no prompt parameters found.
+[Iter 145] Skipping warmup because no prompt parameters found.
+[Iter 146] Skipping warmup because no prompt parameters found.
+[Iter 147] Skipping warmup because no prompt parameters found.
+[Iter 148] Skipping warmup because no prompt parameters found.
+[Iter 149] Skipping warmup because no prompt parameters found.
+[Iter 150] Skipping warmup because no prompt parameters found.
+[Iter 151] Skipping warmup because no prompt parameters found.
+[Iter 152] Skipping warmup because no prompt parameters found.
+[Iter 153] Skipping warmup because no prompt parameters found.
+[Iter 154] Skipping warmup because no prompt parameters found.
+[Iter 155] Skipping warmup because no prompt parameters found.
+[Iter 156] Skipping warmup because no prompt parameters found.
+[Iter 157] Skipping warmup because no prompt parameters found.
+[Iter 158] Skipping warmup because no prompt parameters found.
+[Iter 159] Skipping warmup because no prompt parameters found.
+[Iter 160] Skipping warmup because no prompt parameters found.
+[Iter 161] Skipping warmup because no prompt parameters found.
+[Iter 162] Skipping warmup because no prompt parameters found.
+[Iter 163] Skipping warmup because no prompt parameters found.
+[Iter 164] Skipping warmup because no prompt parameters found.
+[Iter 165] Skipping warmup because no prompt parameters found.
+[Iter 166] Skipping warmup because no prompt parameters found.
+[Iter 167] Skipping warmup because no prompt parameters found.
+[Iter 168] Skipping warmup because no prompt parameters found.
+[Iter 169] Skipping warmup because no prompt parameters found.
+[Iter 170] Skipping warmup because no prompt parameters found.
+[Iter 171] Skipping warmup because no prompt parameters found.
+[Iter 172] Skipping warmup because no prompt parameters found.
+[Iter 173] Skipping warmup because no prompt parameters found.
+[Iter 174] Skipping warmup because no prompt parameters found.
+[Iter 175] Skipping warmup because no prompt parameters found.
+[Iter 176] Skipping warmup because no prompt parameters found.
+[Iter 177] Skipping warmup because no prompt parameters found.
+[Iter 178] Skipping warmup because no prompt parameters found.
+[Iter 179] Skipping warmup because no prompt parameters found.
+[Iter 180] Skipping warmup because no prompt parameters found.
+[Iter 181] Skipping warmup because no prompt parameters found.
+[Iter 182] Skipping warmup because no prompt parameters found.
+[Iter 183] Skipping warmup because no prompt parameters found.
+[Iter 184] Skipping warmup because no prompt parameters found.
+[Iter 185] Skipping warmup because no prompt parameters found.
+[Iter 186] Skipping warmup because no prompt parameters found.
+[Iter 187] Skipping warmup because no prompt parameters found.
+[Iter 188] Skipping warmup because no prompt parameters found.
+[Iter 189] Skipping warmup because no prompt parameters found.
+[Iter 190] Skipping warmup because no prompt parameters found.
+[Iter 191] Skipping warmup because no prompt parameters found.
+[Iter 192] Skipping warmup because no prompt parameters found.
+[Iter 193] Skipping warmup because no prompt parameters found.
+[Iter 194] Skipping warmup because no prompt parameters found.
+[Iter 195] Skipping warmup because no prompt parameters found.
+[Iter 196] Skipping warmup because no prompt parameters found.
+[Iter 197] Skipping warmup because no prompt parameters found.
+[Iter 198] Skipping warmup because no prompt parameters found.
+[Iter 199] Skipping warmup because no prompt parameters found.
+[Iter 200] Skipping warmup because no prompt parameters found.
+[Iter 201] Skipping warmup because no prompt parameters found.
+[Iter 202] Skipping warmup because no prompt parameters found.
+[Iter 203] Skipping warmup because no prompt parameters found.
+[Iter 204] Skipping warmup because no prompt parameters found.
+[Iter 205] Skipping warmup because no prompt parameters found.
+[Iter 206] Skipping warmup because no prompt parameters found.
+[Iter 207] Skipping warmup because no prompt parameters found.
+[Iter 208] Skipping warmup because no prompt parameters found.
+[Iter 209] Skipping warmup because no prompt parameters found.
+[Iter 210] Skipping warmup because no prompt parameters found.
+[Iter 211] Skipping warmup because no prompt parameters found.
+[Iter 212] Skipping warmup because no prompt parameters found.
+[Iter 213] Skipping warmup because no prompt parameters found.
+[Iter 214] Skipping warmup because no prompt parameters found.
+[Iter 215] Skipping warmup because no prompt parameters found.
+[Iter 216] Skipping warmup because no prompt parameters found.
+[Iter 217] Skipping warmup because no prompt parameters found.
+[Iter 218] Skipping warmup because no prompt parameters found.
+[Iter 219] Skipping warmup because no prompt parameters found.
+[Iter 220] Skipping warmup because no prompt parameters found.
+[Iter 221] Skipping warmup because no prompt parameters found.
+[Iter 222] Skipping warmup because no prompt parameters found.
+[Iter 223] Skipping warmup because no prompt parameters found.
+[Iter 224] Skipping warmup because no prompt parameters found.
+[Iter 225] Skipping warmup because no prompt parameters found.
+[Iter 226] Skipping warmup because no prompt parameters found.
+[Iter 227] Skipping warmup because no prompt parameters found.
+[Iter 228] Skipping warmup because no prompt parameters found.
+[Iter 229] Skipping warmup because no prompt parameters found.
+[Iter 230] Skipping warmup because no prompt parameters found.
+[Iter 231] Skipping warmup because no prompt parameters found.
+[Iter 232] Skipping warmup because no prompt parameters found.
+[Iter 233] Skipping warmup because no prompt parameters found.
+[Iter 234] Skipping warmup because no prompt parameters found.
+[Iter 235] Skipping warmup because no prompt parameters found.
+[Iter 236] Skipping warmup because no prompt parameters found.
+[Iter 237] Skipping warmup because no prompt parameters found.
+[Iter 238] Skipping warmup because no prompt parameters found.
+[Iter 239] Skipping warmup because no prompt parameters found.
+[Iter 240] Skipping warmup because no prompt parameters found.
+[Iter 241] Skipping warmup because no prompt parameters found.
+[Iter 242] Skipping warmup because no prompt parameters found.
+[Iter 243] Skipping warmup because no prompt parameters found.
+[Iter 244] Skipping warmup because no prompt parameters found.
+[Iter 245] Skipping warmup because no prompt parameters found.
+[Iter 246] Skipping warmup because no prompt parameters found.
+[Iter 247] Skipping warmup because no prompt parameters found.
+[Iter 248] Skipping warmup because no prompt parameters found.
+[Iter 249] Skipping warmup because no prompt parameters found.
+[Iter 250] Skipping warmup because no prompt parameters found.
+[Iter 251] Skipping warmup because no prompt parameters found.
+[Iter 252] Skipping warmup because no prompt parameters found.
+[Iter 253] Skipping warmup because no prompt parameters found.
+[Iter 254] Skipping warmup because no prompt parameters found.
+[Iter 255] Skipping warmup because no prompt parameters found.
+[Iter 256] Skipping warmup because no prompt parameters found.
+[Iter 257] Skipping warmup because no prompt parameters found.
+[Iter 258] Skipping warmup because no prompt parameters found.
+[Iter 259] Skipping warmup because no prompt parameters found.
+[Iter 260] Skipping warmup because no prompt parameters found.
+[Iter 261] Skipping warmup because no prompt parameters found.
+[Iter 262] Skipping warmup because no prompt parameters found.
+[Iter 263] Skipping warmup because no prompt parameters found.
+[Iter 264] Skipping warmup because no prompt parameters found.
+[Iter 265] Skipping warmup because no prompt parameters found.
+[Iter 266] Skipping warmup because no prompt parameters found.
+[Iter 267] Skipping warmup because no prompt parameters found.
+[Iter 268] Skipping warmup because no prompt parameters found.
+[Iter 269] Skipping warmup because no prompt parameters found.
+[Iter 270] Skipping warmup because no prompt parameters found.
+[Iter 271] Skipping warmup because no prompt parameters found.
+[Iter 272] Skipping warmup because no prompt parameters found.
+[Iter 273] Skipping warmup because no prompt parameters found.
+[Iter 274] Skipping warmup because no prompt parameters found.
+[Iter 275] Skipping warmup because no prompt parameters found.
+[Iter 276] Skipping warmup because no prompt parameters found.
+[Iter 277] Skipping warmup because no prompt parameters found.
+[Iter 278] Skipping warmup because no prompt parameters found.
+[Iter 279] Skipping warmup because no prompt parameters found.
+[Iter 280] Skipping warmup because no prompt parameters found.
+[Iter 281] Skipping warmup because no prompt parameters found.
+[Iter 282] Skipping warmup because no prompt parameters found.
+[Iter 283] Skipping warmup because no prompt parameters found.
+[Iter 284] Skipping warmup because no prompt parameters found.
+[Iter 285] Skipping warmup because no prompt parameters found.
+[Iter 286] Skipping warmup because no prompt parameters found.
+[Iter 287] Skipping warmup because no prompt parameters found.
+[Iter 288] Skipping warmup because no prompt parameters found.
+[Iter 289] Skipping warmup because no prompt parameters found.
+[Iter 290] Skipping warmup because no prompt parameters found.
+[Iter 291] Skipping warmup because no prompt parameters found.
+[Iter 292] Skipping warmup because no prompt parameters found.
+[Iter 293] Skipping warmup because no prompt parameters found.
+[Iter 294] Skipping warmup because no prompt parameters found.
+[Iter 295] Skipping warmup because no prompt parameters found.
+[Iter 296] Skipping warmup because no prompt parameters found.
+[Iter 297] Skipping warmup because no prompt parameters found.
+[Iter 298] Skipping warmup because no prompt parameters found.
+[Iter 299] Skipping warmup because no prompt parameters found.
+[Iter 300] Skipping warmup because no prompt parameters found.
+[Iter 301] Skipping warmup because no prompt parameters found.
+[Iter 302] Skipping warmup because no prompt parameters found.
+[Iter 303] Skipping warmup because no prompt parameters found.
+[Iter 304] Skipping warmup because no prompt parameters found.
+[Iter 305] Skipping warmup because no prompt parameters found.
+[Iter 306] Skipping warmup because no prompt parameters found.
+[Iter 307] Skipping warmup because no prompt parameters found.
+[Iter 308] Skipping warmup because no prompt parameters found.
+[Iter 309] Skipping warmup because no prompt parameters found.
+[Iter 310] Skipping warmup because no prompt parameters found.
+[Iter 311] Skipping warmup because no prompt parameters found.
+[Iter 312] Skipping warmup because no prompt parameters found.
+[Iter 313] Skipping warmup because no prompt parameters found.
+[Iter 314] Skipping warmup because no prompt parameters found.
+[Iter 315] Skipping warmup because no prompt parameters found.
+[Iter 316] Skipping warmup because no prompt parameters found.
+[Iter 317] Skipping warmup because no prompt parameters found.
+[Iter 318] Skipping warmup because no prompt parameters found.
+[Iter 319] Skipping warmup because no prompt parameters found.
+[                               ] 1/400, 0.0 task/s, elapsed: 205s, ETA: 81616s[                               ] 2/400, 0.0 task/s, elapsed: 208s, ETA: 41389s[                               ] 3/400, 0.0 task/s, elapsed: 211s, ETA: 27974s[                               ] 4/400, 0.0 task/s, elapsed: 215s, ETA: 21268s[                               ] 5/400, 0.0 task/s, elapsed: 218s, ETA: 17239s[                               ] 6/400, 0.0 task/s, elapsed: 222s, ETA: 14554s[                               ] 7/400, 0.0 task/s, elapsed: 225s, ETA: 12634s[                               ] 8/400, 0.0 task/s, elapsed: 228s, ETA: 11195s[                               ] 9/400, 0.0 task/s, elapsed: 232s, ETA: 10074s[                              ] 10/400, 0.0 task/s, elapsed: 235s, ETA:  9177s[                              ] 11/400, 0.0 task/s, elapsed: 239s, ETA:  8442s[                              ] 12/400, 0.0 task/s, elapsed: 242s, ETA:  7830s[                              ] 13/400, 0.1 task/s, elapsed: 246s, ETA:  7310s[>                             ] 14/400, 0.1 task/s, elapsed: 249s, ETA:  6864s[>                             ] 15/400, 0.1 task/s, elapsed: 252s, ETA:  6478s[>                             ] 16/400, 0.1 task/s, elapsed: 256s, ETA:  6140s[>                             ] 17/400, 0.1 task/s, elapsed: 259s, ETA:  5841s[>                             ] 18/400, 0.1 task/s, elapsed: 263s, ETA:  5575s[>                             ] 19/400, 0.1 task/s, elapsed: 266s, ETA:  5336s[>                             ] 20/400, 0.1 task/s, elapsed: 270s, ETA:  5122s[>                             ] 21/400, 0.1 task/s, elapsed: 273s, ETA:  4927s[>                             ] 22/400, 0.1 task/s, elapsed: 276s, ETA:  4750s[>                             ] 23/400, 0.1 task/s, elapsed: 280s, ETA:  4587s[>                             ] 24/400, 0.1 task/s, elapsed: 283s, ETA:  4438s[>                             ] 25/400, 0.1 task/s, elapsed: 287s, ETA:  4301s[>                             ] 26/400, 0.1 task/s, elapsed: 290s, ETA:  4175s[>>                            ] 27/400, 0.1 task/s, elapsed: 294s, ETA:  4057s[>>                            ] 28/400, 0.1 task/s, elapsed: 297s, ETA:  3948s[>>                            ] 29/400, 0.1 task/s, elapsed: 301s, ETA:  3845s[>>                            ] 30/400, 0.1 task/s, elapsed: 304s, ETA:  3750s[>>                            ] 31/400, 0.1 task/s, elapsed: 307s, ETA:  3660s[>>                            ] 32/400, 0.1 task/s, elapsed: 311s, ETA:  3576s[>>                            ] 33/400, 0.1 task/s, elapsed: 314s, ETA:  3496s[>>                            ] 34/400, 0.1 task/s, elapsed: 318s, ETA:  3421s[>>                            ] 35/400, 0.1 task/s, elapsed: 321s, ETA:  3350s[>>                            ] 36/400, 0.1 task/s, elapsed: 325s, ETA:  3283s[>>                            ] 37/400, 0.1 task/s, elapsed: 328s, ETA:  3220s[>>                            ] 38/400, 0.1 task/s, elapsed: 332s, ETA:  3159s[>>                            ] 39/400, 0.1 task/s, elapsed: 335s, ETA:  3102s[>>>                           ] 40/400, 0.1 task/s, elapsed: 339s, ETA:  3047s[>>>                           ] 41/400, 0.1 task/s, elapsed: 342s, ETA:  2994s[>>>                           ] 42/400, 0.1 task/s, elapsed: 345s, ETA:  2944s[>>>                           ] 43/400, 0.1 task/s, elapsed: 349s, ETA:  2897s[>>>                           ] 44/400, 0.1 task/s, elapsed: 352s, ETA:  2851s[>>>                           ] 45/400, 0.1 task/s, elapsed: 356s, ETA:  2807s[>>>                           ] 46/400, 0.1 task/s, elapsed: 359s, ETA:  2765s[>>>                           ] 47/400, 0.1 task/s, elapsed: 363s, ETA:  2724s[>>>                           ] 48/400, 0.1 task/s, elapsed: 366s, ETA:  2685s[>>>                           ] 49/400, 0.1 task/s, elapsed: 370s, ETA:  2648s[>>>                           ] 50/400, 0.1 task/s, elapsed: 373s, ETA:  2612s[>>>                           ] 51/400, 0.1 task/s, elapsed: 377s, ETA:  2577s[>>>                           ] 52/400, 0.1 task/s, elapsed: 380s, ETA:  2543s[>>>                           ] 53/400, 0.1 task/s, elapsed: 383s, ETA:  2511s[>>>>                          ] 54/400, 0.1 task/s, elapsed: 387s, ETA:  2479s[>>>>                          ] 55/400, 0.1 task/s, elapsed: 390s, ETA:  2449s[>>>>                          ] 56/400, 0.1 task/s, elapsed: 394s, ETA:  2419s[>>>>                          ] 57/400, 0.1 task/s, elapsed: 397s, ETA:  2391s[>>>>                          ] 58/400, 0.1 task/s, elapsed: 401s, ETA:  2363s[>>>>                          ] 59/400, 0.1 task/s, elapsed: 404s, ETA:  2336s[>>>>                          ] 60/400, 0.1 task/s, elapsed: 408s, ETA:  2310s[>>>>                          ] 61/400, 0.1 task/s, elapsed: 411s, ETA:  2285s[>>>>                          ] 62/400, 0.1 task/s, elapsed: 415s, ETA:  2260s[>>>>                          ] 63/400, 0.2 task/s, elapsed: 418s, ETA:  2236s[>>>>                          ] 64/400, 0.2 task/s, elapsed: 422s, ETA:  2213s[>>>>                          ] 65/400, 0.2 task/s, elapsed: 425s, ETA:  2190s[>>>>                          ] 66/400, 0.2 task/s, elapsed: 428s, ETA:  2168s[>>>>>                         ] 67/400, 0.2 task/s, elapsed: 432s, ETA:  2147s[>>>>>                         ] 68/400, 0.2 task/s, elapsed: 435s, ETA:  2125s[>>>>>                         ] 69/400, 0.2 task/s, elapsed: 439s, ETA:  2105s[>>>>>                         ] 70/400, 0.2 task/s, elapsed: 442s, ETA:  2085s[>>>>>                         ] 71/400, 0.2 task/s, elapsed: 446s, ETA:  2065s[>>>>>                         ] 72/400, 0.2 task/s, elapsed: 449s, ETA:  2046s[>>>>>                         ] 73/400, 0.2 task/s, elapsed: 453s, ETA:  2028s[>>>>>                         ] 74/400, 0.2 task/s, elapsed: 456s, ETA:  2009s[>>>>>                         ] 75/400, 0.2 task/s, elapsed: 460s, ETA:  1991s[>>>>>                         ] 76/400, 0.2 task/s, elapsed: 463s, ETA:  1974s[>>>>>                         ] 77/400, 0.2 task/s, elapsed: 466s, ETA:  1957s[>>>>>                         ] 78/400, 0.2 task/s, elapsed: 470s, ETA:  1940s[>>>>>                         ] 79/400, 0.2 task/s, elapsed: 473s, ETA:  1923s[>>>>>>                        ] 80/400, 0.2 task/s, elapsed: 477s, ETA:  1907s
+writing results to work_dirs/res.pkl
+per class results:
+
++---------------+-------+-------+
+| Class         | IoU   | Acc   |
++---------------+-------+-------+
+| road          | 56.16 | 75.72 |
+| sidewalk      | 15.55 | 27.29 |
+| building      | 22.3  | 41.38 |
+| wall          | 3.87  | 8.06  |
+| fence         | 2.53  | 4.96  |
+| pole          | 0.5   | 0.81  |
+| traffic light | 0.09  | 0.19  |
+| traffic sign  | 0.43  | 0.77  |
+| vegetation    | 14.82 | 23.91 |
+| terrain       | 0.2   | 0.23  |
+| sky           | 49.83 | 64.12 |
+| person        | 0.45  | 1.25  |
+| rider         | 0.0   | 0.0   |
+| car           | 4.83  | 10.94 |
+| truck         | 0.0   | 0.0   |
+| bus           | 0.0   | 0.0   |
+| train         | 0.0   | 0.0   |
+| motorcycle    | 0.0   | 0.0   |
+| bicycle       | 0.0   | 0.0   |
++---------------+-------+-------+
+Summary:
+
++--------+------+-------+-------+
+| Scope  | mIoU | mAcc  | aAcc  |
++--------+------+-------+-------+
+| global | 9.03 | 13.66 | 46.85 |
++--------+------+-------+-------+
+Logged mIoU: 0.09029999999999999

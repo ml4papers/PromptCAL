@@ -1,0 +1,13 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+Traceback (most recent call last):
+  File "tools/svdp.py", line 11, in <module>
+    from mmseg.apis import multi_gpu_test, single_gpu_test, single_gpu_svdp
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/apis/__init__.py", line 2, in <module>
+    from .test import multi_gpu_test, single_gpu_test, single_gpu_tent, single_gpu_cotta, single_gpu_svdp
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/apis/test.py", line 622
+    switch_iter = int(total_iters * )  # 前30%仅更新prompt
+                                    ^
+SyntaxError: invalid syntax

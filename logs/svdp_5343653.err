@@ -1,0 +1,40 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.10 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250502_221749-krfc2wg0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/krfc2wg0
+2025-05-02 22:17:54,388 - mmseg - INFO - Loaded 400 images
+2025-05-02 22:17:54,407 - mmseg - INFO - Loaded 400 images
+2025-05-02 22:17:54,424 - mmseg - INFO - Loaded 400 images
+2025-05-02 22:17:54,443 - mmseg - INFO - Loaded 400 images
+wandb: - 0.108 MB of 0.108 MB uploadedwandb: \ 0.108 MB of 0.108 MB uploadedwandb: | 0.108 MB of 0.108 MB uploadedwandb: / 0.108 MB of 0.108 MB uploadedwandb: - 0.184 MB of 0.197 MB uploaded (0.004 MB deduped)wandb: \ 0.197 MB of 0.197 MB uploaded (0.004 MB deduped)wandb: 
+wandb: Run history:
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/krfc2wg0
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v73
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250502_221749-krfc2wg0/logs
+Traceback (most recent call last):
+  File "tools/svdp.py", line 337, in <module>
+    main()
+  File "tools/svdp.py", line 297, in main
+    outputs = single_gpu_svdp(args, model, data_loader, args.show, args.show_dir,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/apis/test.py", line 746, in single_gpu_svdp
+    total_loss.backward()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/_tensor.py", line 307, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/autograd/__init__.py", line 154, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA out of memory. Tried to allocate 12.61 GiB (GPU 0; 39.39 GiB total capacity; 22.03 GiB already allocated; 9.04 GiB free; 28.16 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

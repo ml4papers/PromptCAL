@@ -1,0 +1,67 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.10 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/wandb/run-20250424_230615-lwi4wm9v
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_TTA_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_TTA_vsc-tools/runs/lwi4wm9v
+2025-04-24 23:06:21,436 - mmseg - INFO - Loaded 400 images
+2025-04-24 23:06:21,452 - mmseg - INFO - Loaded 400 images
+2025-04-24 23:06:21,469 - mmseg - INFO - Loaded 400 images
+2025-04-24 23:06:21,484 - mmseg - INFO - Loaded 400 images
+wandb: - 1.362 MB of 1.362 MB uploaded (1.237 MB deduped)wandb: \ 1.362 MB of 1.362 MB uploaded (1.237 MB deduped)wandb: | 1.362 MB of 1.362 MB uploaded (1.237 MB deduped)wandb: / 1.439 MB of 1.460 MB uploaded (1.307 MB deduped)wandb: - 1.439 MB of 1.460 MB uploaded (1.307 MB deduped)wandb: \ 1.460 MB of 1.460 MB uploaded (1.307 MB deduped)wandb: 
+wandb: Run history:
+wandb:            mIoU █▁
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb:            mIoU 0.4189
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_TTA_vsc-tools/runs/lwi4wm9v
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_TTA_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYyMTQzNzQwNQ==/version_details/v1
+wandb: Synced 6 W&B file(s), 0 media file(s), 668 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250424_230615-lwi4wm9v/logs
+Traceback (most recent call last):
+  File "tools/svdp.py", line 349, in <module>
+    main()
+  File "tools/svdp.py", line 309, in main
+    outputs = single_gpu_svdp(args, model, data_loader, args.show, args.show_dir,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/mmseg/apis/test.py", line 641, in single_gpu_svdp
+    for i, data in enumerate(data_loader):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1203, in _next_data
+    return self._process_data(data)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1229, in _process_data
+    data.reraise()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/_utils.py", line 434, in reraise
+    raise exception
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 1.
+Original Traceback (most recent call last):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 287, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/mmseg/datasets/custom.py", line 191, in __getitem__
+    return self.prepare_train_img(idx)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/mmseg/datasets/custom.py", line 208, in prepare_train_img
+    return self.pipeline(results)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/mmseg/datasets/pipelines/compose.py", line 40, in __call__
+    data = t(data)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_TTA_vsc/mmseg/datasets/pipelines/loading.py", line 60, in __call__
+    img_bytes = self.file_client.get(filename)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/fileio/file_client.py", line 992, in get
+    return self.client.get(filepath)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/fileio/file_client.py", line 517, in get
+    with open(filepath, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/gpfs/data/fs72306/leijx0408/SVDP/dataset/rgb_anon/rain/train/GOPR0400/GOPR0400_frame_000570_rgb_anon.png'
+

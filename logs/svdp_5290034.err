@@ -1,0 +1,76 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.9 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250419_151627-otuyw2cx
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/otuyw2cx
+2025-04-19 15:16:31,040 - mmseg - INFO - Loaded 400 images
+2025-04-19 15:16:31,047 - mmseg - INFO - Loaded 400 images
+2025-04-19 15:16:31,054 - mmseg - INFO - Loaded 400 images
+2025-04-19 15:16:31,061 - mmseg - INFO - Loaded 400 images
+wandb: - 0.100 MB of 0.100 MB uploadedwandb: \ 0.100 MB of 0.100 MB uploadedwandb: | 0.100 MB of 0.100 MB uploadedwandb: / 0.100 MB of 0.100 MB uploadedwandb: - 0.168 MB of 0.186 MB uploaded (0.004 MB deduped)wandb: \ 0.168 MB of 0.186 MB uploaded (0.004 MB deduped)wandb: | 0.186 MB of 0.186 MB uploaded (0.004 MB deduped)wandb:                                                                                
+wandb: W&B sync reduced upload amount by 2.1%             
+wandb: 
+wandb: Run history:
+wandb:        All_mIoU ▁
+wandb:            mIoU █▁▇▆
+wandb:       mean_mIoU ▁
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb:        All_mIoU 0.61387
+wandb:            mIoU 0.6328
+wandb:       mean_mIoU 0.61387
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/otuyw2cx
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v7
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250419_151627-otuyw2cx/logs
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.9 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250419_170650-y8zb2x8t
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/y8zb2x8t
+2025-04-19 17:06:54,354 - mmseg - INFO - Loaded 400 images
+2025-04-19 17:06:54,361 - mmseg - INFO - Loaded 400 images
+2025-04-19 17:06:54,368 - mmseg - INFO - Loaded 400 images
+2025-04-19 17:06:54,375 - mmseg - INFO - Loaded 400 images
+wandb: - 0.100 MB of 0.100 MB uploadedwandb: \ 0.100 MB of 0.100 MB uploadedwandb: | 0.100 MB of 0.100 MB uploadedwandb: / 0.167 MB of 0.181 MB uploaded (0.004 MB deduped)wandb: - 0.167 MB of 0.181 MB uploaded (0.004 MB deduped)wandb: \ 0.181 MB of 0.181 MB uploaded (0.004 MB deduped)wandb: 
+wandb: Run history:
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/y8zb2x8t
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v8
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250419_170650-y8zb2x8t/logs
+Traceback (most recent call last):
+  File "tools/svdp.py", line 332, in <module>
+    main()
+  File "tools/svdp.py", line 292, in main
+    outputs = single_gpu_svdp(args, model, data_loader, args.show, args.show_dir,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/apis/test.py", line 571, in single_gpu_svdp
+    total_loss.backward()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/_tensor.py", line 307, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/autograd/__init__.py", line 154, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn

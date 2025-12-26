@@ -1,0 +1,124 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+wandb: Currently logged in as: leijixiang0408 (jonas-tug). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.9 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in /home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/wandb/run-20250420_183134-352y92sa
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run debug
+wandb: ⭐️ View project at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools
+wandb: 🚀 View run at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/352y92sa
+2025-04-20 18:31:39,496 - mmseg - INFO - Loaded 400 images
+2025-04-20 18:31:39,502 - mmseg - INFO - Loaded 400 images
+2025-04-20 18:31:39,507 - mmseg - INFO - Loaded 400 images
+2025-04-20 18:31:39,512 - mmseg - INFO - Loaded 400 images
+wandb: - 1.346 MB of 1.346 MB uploaded (1.186 MB deduped)wandb: \ 1.346 MB of 1.346 MB uploaded (1.186 MB deduped)wandb: | 1.346 MB of 1.346 MB uploaded (1.186 MB deduped)wandb: / 1.421 MB of 1.436 MB uploaded (1.189 MB deduped)wandb: - 1.436 MB of 1.436 MB uploaded (1.189 MB deduped)wandb: 
+wandb: Run history:
+wandb: revisiting_step ▁
+wandb: 
+wandb: Run summary:
+wandb: revisiting_step 0
+wandb: 
+wandb: 🚀 View run debug at: https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/runs/352y92sa
+wandb: ️⚡ View job at https://wandb.ai/jonas-tug/SVDP_cross_stage_consistency_warmup_vsc-tools/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjYxNTkyMzI1NA==/version_details/v18
+wandb: Synced 6 W&B file(s), 0 media file(s), 667 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20250420_183134-352y92sa/logs
+Traceback (most recent call last):
+  File "tools/svdp.py", line 337, in <module>
+    main()
+  File "tools/svdp.py", line 297, in main
+    outputs = single_gpu_svdp(args, model, data_loader, args.show, args.show_dir,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/apis/test.py", line 674, in single_gpu_svdp
+    loss_dict = model(return_loss=True, img=img, img_metas=img_metas, gt_semantic_seg=target)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/parallel/data_parallel.py", line 50, in forward
+    return super().forward(*inputs, **kwargs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/nn/parallel/data_parallel.py", line 166, in forward
+    return self.module(*inputs[0], **kwargs[0])
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/runner/fp16_utils.py", line 98, in new_func
+    return old_func(*args, **kwargs)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/segmentors/base.py", line 158, in forward
+    return self.forward_train(img, img_metas, **kwargs)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/segmentors/encoder_decoder.py", line 219, in forward_train
+    loss_decode = self._decode_head_forward_train(x, img_metas,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/segmentors/encoder_decoder.py", line 162, in _decode_head_forward_train
+    loss_decode = self.decode_head.forward_train(x, img_metas,
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/decode_heads/decode_head.py", line 189, in forward_train
+    losses = self.losses(seg_logits, gt_semantic_seg)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/mmcv/runner/fp16_utils.py", line 186, in new_func
+    return old_func(*args, **kwargs)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/decode_heads/decode_head.py", line 230, in losses
+    loss['loss_seg'] = self.loss_decode(
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/losses/cross_entropy_loss.py", line 190, in forward
+    loss_cls = self.loss_weight * self.cls_criterion(
+  File "/home/fs72306/leijx0408/SVDP_cross_stage_consistency_warmup_vsc/mmseg/models/losses/cross_entropy_loss.py", line 19, in cross_entropy
+    loss = F.cross_entropy(
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/torch/nn/functional.py", line 2846, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index, label_smoothing)
+RuntimeError: expected scalar type Long but found Float
+Exception in thread NetStatThr:
+Traceback (most recent call last):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+Exception in thread IntMsgThr:
+Traceback (most recent call last):
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/threading.py", line 870, in run
+    self.run()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/wandb_run.py", line 268, in check_network_status
+    self._target(*self._args, **self._kwargs)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/wandb_run.py", line 300, in check_internal_messages
+    self._loop_check_status(
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    self._loop_check_status(
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    local_handle = request()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface.py", line 792, in deliver_network_status
+    local_handle = request()
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface.py", line 800, in deliver_internal_messages
+    return self._deliver_network_status(status)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_shared.py", line 500, in _deliver_network_status
+    return self._deliver_internal_messages(internal_message)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_shared.py", line 506, in _deliver_internal_messages
+    return self._deliver_record(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_shared.py", line 449, in _deliver_record
+    return self._deliver_record(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_shared.py", line 449, in _deliver_record
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    handle = mailbox._deliver_record(record, interface=self)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    interface._publish(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    interface._publish(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self._sock_client.send_record_publish(record)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self.send_server_request(server_req)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._send_message(msg)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._send_message(msg)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    self._sendall_with_error_handle(header + data)
+  File "/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe

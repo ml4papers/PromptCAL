@@ -1,0 +1,12 @@
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/fs72306/leijx0408/.conda/envs/svdp/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+Traceback (most recent call last):
+  File "tools/svdp.py", line 337, in <module>
+    main()
+  File "tools/svdp.py", line 128, in main
+    args = parse_args()
+  File "tools/svdp.py", line 114, in parse_args
+    parser.add_argument('--entropy_thresh', type=float, default=0.4*ln19,
+NameError: name 'ln19' is not defined

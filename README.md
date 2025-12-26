@@ -11,7 +11,7 @@ Code for our paper: "PromptCAL: Entropy-Calibrated and Prompt-Tuned Test-Time Ad
 Follow the SVDP reposory https://github.com/Anonymous-012/SVDP
 
 
-## 🔁 Reproduce
+## Reproduce
 
 ```bash
 bash bash/promptcal.sh
